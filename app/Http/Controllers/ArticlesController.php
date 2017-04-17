@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Article;
 use App\Comment;
+use App\User;
 use Auth;
 use Session;
 
@@ -12,7 +13,8 @@ class ArticlesController extends Controller
 {
     function showArticles() {
     	$articles = Article::all();
-    	return view ('article/display', compact('articles'));
+        $users = User::all();
+    	return view ('article/display', compact('articles', 'users'));
     }
 
     function showArticle($id) {
@@ -28,6 +30,7 @@ class ArticlesController extends Controller
     	$new_article = new Article(); 
     	$new_article->title = $request->title;
     	$new_article->content = $request->content; 
+        $new_article->user_id = Auth::user()->id;
     	$new_article->save();
 
     	Session::flash('message', 'Article Successfully Created!');
@@ -65,10 +68,11 @@ class ArticlesController extends Controller
 		$new_comment->save();
 
 		//ask why 'articles/$id' doesnt work. 
-		return redirect('articles');
+		return redirect("articles/$id");
 	}
 
     function showLanding() {
-        return view('layouts/landing');
+        $users = User::all();
+        return view('layouts/landing', compact('users'));
     }
 }

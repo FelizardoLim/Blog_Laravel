@@ -11,8 +11,10 @@
 |
 */
 
+// for return view(auth/login); --- specific file location compared to below
+// pinpoints specific route
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth/login');
 });
 
 Auth::routes();

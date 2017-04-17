@@ -10,7 +10,7 @@
 			</div>
 			<div class="collapse navbar-collapse" id="primarynavbar">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a class="glyphicon glyphicon-home" aria-hidden="true" href="#"></a></li>
+					<li><a class="glyphicon glyphicon-home" aria-hidden="true" href="{{ url('landing') }}"></a></li>
 					<li><a class="glyphicon glyphicon-envelope" aria-hidden="true" href="#"></a></li>
 					<li><a class="glyphicon glyphicon-user" aria-hidden="true" href="#"></a></li>
 					<li><a class="glyphicon glyphicon-pencil" aria-hidden="true" href="#"></a></li>
