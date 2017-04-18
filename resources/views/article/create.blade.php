@@ -3,7 +3,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        		<h4 class="modal-title">Create New Article</h4>
+        		<h4 class="modal-title">Create Post Details</h4>
 			</div>
 			<form class="form-group" method="POST" action="{{ url('articles/create') }}">
 			<div class="modal-body">
@@ -18,8 +18,8 @@
 					</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        		<button type="submit" class="btn btn-success">Post Article</button>
+				<button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
+        		<button type="submit" class="btn btn-sm btn-success">Post</button>
 			</div>
 			</form>
 		</div>

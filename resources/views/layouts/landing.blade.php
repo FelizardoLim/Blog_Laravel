@@ -27,7 +27,7 @@
 			<div class="col-sm-6 col-sm-offset-1">
 				<div class="media">
 					<div class="media-left">
-						<img class="media-object user_avatar" src="{{ asset('img/placeholder.png') }}" alt="">
+						<img class="media-object user_avatar" src="{{ asset('img/'.Auth::user()->profile->avatar_src) }}" alt="">
 					</div>
 					<div class="media-body">
 						<nav>

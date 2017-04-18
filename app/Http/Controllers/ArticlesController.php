@@ -73,6 +73,23 @@ class ArticlesController extends Controller
 
     function showLanding() {
         $users = User::all();
-        return view('layouts/landing', compact('users'));
+        $avatar = Auth::user()->profile->avatar_src;
+        return view('layouts/landing', compact('users','avatar'));
     }
+
+
+    function showAllFeed() {
+        $users = User::all();
+        $avatar = Auth::user()->profile->avatar_src;
+        return view('article/display', compact('users','avatar'));
+    }
+
+    function showFeed($id) {
+        $article = Article::find($id);
+        return view('article/display_one_article', compact('article'));
+    }
+
+    // function editPost() {
+        
+    // }
 }

@@ -31,3 +31,10 @@ Route::get('articles/{id}/delete', 'ArticlesController@deleteArticle');
 Route::post('articles/{id}/comment', 'ArticlesController@addComment');
 
 Route::get('landing', 'ArticlesController@showLanding');
+
+Route::get('feed', 'ArticlesController@showAllFeed');
+Route::get('feed/{id}', 'ArticlesController@showFeed');
+
+// not being used?
+// Route::get('feed/{id}/edit', 'ArticlesController@editArticle');
+// Route::post('feed/{id}/edit', 'ArticlesController@saveEditedArticle');

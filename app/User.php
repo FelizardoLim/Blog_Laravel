@@ -11,6 +11,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Article');
     }
 
+    function profile() {
+        return $this->hasOne('App\Profile');
+    }
+
     use Notifiable;
 
     /**

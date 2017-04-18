@@ -1,15 +1,27 @@
-<h4>Edit Existing Article</h4>
-<form method="POST" action='{{ url("articles/{$article_to_edit->id}/edit") }}'>
-	{{ csrf_field() }}
-	<div>
-		<label for="name">Title:</label>
-		<input type="text" name="title" value='{{ $article_to_edit->title }}'>
+<div class="modal fade" id="edit_article" tabindex="-1" role="dialog" >
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        		<h4 class="modal-title">Edit Post</h4>
+			</div>
+			<form class="form-group" method="POST" action='{{ url("articles/{$article->id}/edit") }}'>
+			<div class="modal-body">
+					{{ csrf_field() }}
+					<div class="form-group">
+						<label for="title">Title:</label>
+						<input class="form-control" type="text" name="title" value='{{ $article->title }}'>
+					</div>
+					<div class="form-group">
+						<label for="content">Content:</label>
+						<textarea class="form-control" type="text" name="content" rows="7">{{ $article->content }}</textarea>
+					</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
+        		<button type="submit" class="btn btn-sm btn-success">Submit Changes</button>
+			</div>
+			</form>
+		</div>
 	</div>
-	<br>
-	<div>
-		<label for="content">Content:</label>
-		<textarea type="text" name="content">{{ $article_to_edit->content }}</textarea>
-	</div>
-	<br>
-	<button type="submit">Submit</button>
-</form>
+</div>
