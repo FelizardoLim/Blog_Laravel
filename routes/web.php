@@ -34,6 +34,8 @@ Route::get('landing', 'ArticlesController@showLanding');
 
 Route::get('feed', 'ArticlesController@showAllFeed');
 Route::get('feed/{id}', 'ArticlesController@showFeed');
+Route::post('feed/{id}/edit_comment', 'ArticlesController@saveEditedComment');
+Route::get('feed/{id}/delete_comment', 'ArticlesController@deleteComment');
 
 // not being used?
 // Route::get('feed/{id}/edit', 'ArticlesController@editArticle');

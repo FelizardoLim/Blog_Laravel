@@ -14,7 +14,7 @@
 					</div>
 					<div class="form-group">
 						<label for="content">Content:</label>
-						<textarea class="form-control" type="text" name="content" rows="7"></textarea>
+						<textarea id="summernote" class="form-control" type="text" name="content" rows="7"></textarea>
 					</div>
 			</div>
 			<div class="modal-footer">
@@ -25,3 +25,11 @@
 		</div>
 	</div>
 </div>
+
+<script>
+$(document).ready(function() {
+    $('#summernote').summernote({
+    	minHeight: 150,
+    });
+});
+</script>
