@@ -68,6 +68,10 @@ html, body {
 	width: 75px;
 }
 
+/*.panel_reply {
+    display: none;
+}*/
+
 /*login page*/
 .login, .register {
 	padding-top: 50px;

@@ -1,10 +1,10 @@
-<!-- Delete Comment Modal -->
-	<div id='delete_comment{{$comment->id}}' class='modal fade' role='dialog'>
+<!-- Delete Reply Modal -->
+	<div id='delete_reply{{$reply->id}}' class='modal fade' role='dialog'>
 		<div class='modal-dialog'>
 			<div class='modal-content'>
 				<div class='modal-header'>
 					<button type='button' class='close' data-dismiss='modal'>&times;</button>
-					<h3 class='modal-title'>Delete Comment</h3>
+					<h3 class='modal-title'>Delete Reply</h3>
 				</div>
 				<div class='modal-body'>
 					<h4>Are you sure?</h4>
@@ -13,9 +13,9 @@
 				</div>
 				<div class='modal-footer'>
 					<button type='button' class='btn btn-sm btn-default' data-dismiss='modal'>Close</button>
-					<a href='{{ url("feed/{$comment->id}/delete_comment") }}'><button type'submit' class='btn btn-sm btn-danger' name='delete'>Yes! Delete this Item</button></a>
+					<a href='{{ url("feed/{$reply->id}/delete_reply") }}'><button type'submit' class='btn btn-sm btn-danger' name='delete'>Yes! Delete this reply!</button></a>
 				</div>
 			</div>
 		</div>
 	</div>
-<!-- Delete Comment Modal -->
+<!-- Delete Reply Modal -->

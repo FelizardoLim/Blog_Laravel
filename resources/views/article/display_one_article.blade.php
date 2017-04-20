@@ -28,10 +28,35 @@
 						<p class="alert alert-success">{{ Session::get('message') }}</p>
 					@endif
 					@foreach($article->comments as $comment)
-						<p>Comment Owner: {{ $comment->owner->name }}</p>
-						<p>Posted Date: {{ $comment->created_at }}</p>
+						<div class="row">
+							<div class="col-xs-6">
+								<p>Comment Owner: {{ $comment->owner->name }}</p>
+							</div>
+							<div class="col-xs-6 text-right">
+								<p>Posted Date: {{ $comment->created_at }}</p>
+							</div>
+						</div>
 						<p>Comment:</p>
-						<p>{{ $comment->content }}</p>
+						<p>{{ $comment->content }}</p>		
+
+						<button class="btn btn-sm btn-primary pull-right" data-toggle="modal" data-target="#add_reply">Reply</button>
+						@include ('reply/create_reply')
+
+						@foreach($comment->replies as $reply)
+							<p>{{ $reply->reply_content }}</p>
+							@if($reply->user_id == Auth::user()->id)
+								<button class="btn btn-sm btn-default" data-toggle="modal" data-target="#edit_reply{{$reply->id}}">Edit</button>
+								@include('reply/edit')
+								<button class="btn btn-sm btn-default" data-toggle="modal" data-target="#delete_reply{{$reply->id}}">Delete</button>
+								@include('reply/delete')
+							@endif
+						@endforeach
+<!-- 							<script>
+								$("#flip_reply{{$comment->id}}").click(function() {
+									$("#panel_reply{{$comment->id}}").slideToggle("slow");
+								});
+							</script> -->
+
 					@if($comment->user_id == Auth::user()->id)
 						<button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#edit_comment{{$comment->id}}">Edit</button>
 						@include ('comment/edit')
@@ -51,8 +76,9 @@
 						<h4>Leave a comment: </h4>
 					</div>
 					<div class="panel-body">
-						<textarea class="form-control" name="comment" rows="5"></textarea><br>
-						<button class="btn btn-sm btn-success" type="submit">Submit</button>
+						<textarea class="form-control" name="comment" rows="5"></textarea>
+						<br>
+						<button class="pull-right btn btn-sm btn-success" type="submit">Submit</button>
 					</div>
 				</div>
 			</div>

@@ -1,22 +1,24 @@
-<div class="modal fade" id="edit_comment{{$comment->id}}" tabindex="-1" role="dialog" >
+<!-- Reply Modal -->
+<div class="modal fade" id="add_reply" tabindex="-1" role="dialog" >
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        		<h4 class="modal-title">New Comment</h4>
+        		<h4 class="modal-title">New Reply</h4>
 			</div>
-			<form class="form-group" method="POST" action='{{ url("feed/{$comment->id}/edit_comment") }}'>
+			<form class="form-group" method="POST" action='{{ url("feed/$comment->id/reply") }}'>
 			<div class="modal-body">
 				{{ csrf_field() }}
 				<div class="form-group">
-					<textarea class="form-control" type="text" name="comment" rows="7">{{ $comment->content }}</textarea>
+					<textarea class="form-control" type="text" name="reply" rows="7"></textarea>
 				</div>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
-        		<button type="submit" class="btn btn-sm btn-success">Submit Changes</button>
+        		<button type="submit" class="btn btn-sm btn-success">Submit Reply</button>
 			</div>
 			</form>
 		</div>
 	</div>
 </div>
+<!-- Reply Modal End -->

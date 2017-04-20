@@ -37,6 +37,17 @@ Route::get('feed/{id}', 'ArticlesController@showFeed');
 Route::post('feed/{id}/edit_comment', 'ArticlesController@saveEditedComment');
 Route::get('feed/{id}/delete_comment', 'ArticlesController@deleteComment');
 
+Route::get('profile', 'ArticlesController@showProfile');
+Route::post('upload_avatar', 'ArticlesController@uploadAvatar');
+
+Route::post('feed/{id}/reply', 'RepliesController@addReply');
+Route::post('feed/{id}/edit_reply', 'RepliesController@saveEditedReply');
+Route::get('feed/{id}/delete_reply', 'RepliesController@deleteReply');
+
+
+// Route::post('upload_avatar', 'ArticlesController@uploadAvatar');
+
+
 // not being used?
 // Route::get('feed/{id}/edit', 'ArticlesController@editArticle');
 // Route::post('feed/{id}/edit', 'ArticlesController@saveEditedArticle');

@@ -6,8 +6,12 @@ use Illuminate\Http\Request;
 use App\Article;
 use App\Comment;
 use App\User;
+use App\Profile;
 use Auth;
 use Session;
+use Storage;
+use File;
+use Response;
 
 class ArticlesController extends Controller
 {
@@ -67,7 +71,8 @@ class ArticlesController extends Controller
 		$new_comment->article_id = $id;
 		$new_comment->save();
 
-		//ask why 'articles/$id' doesnt work. 
+		//ask why 'articles/$id' doesnt work. double quotes required. 
+        Session::flash('message', 'Comment Successfully Created!');
 		return redirect("articles/$id");
 	}
 
@@ -88,7 +93,7 @@ class ArticlesController extends Controller
         $article_id = $delete_comment->article_id;
         $delete_comment->delete();
 
-        Session::flash('message', 'Article Successfully Deleted!');
+        Session::flash('message', 'Comment Successfully Deleted!');
         return redirect("feed/$article_id");
     }
 
@@ -110,7 +115,38 @@ class ArticlesController extends Controller
         return view('article/display_one_article', compact('article'));
     }
 
-    // function editPost() {
-        
+    function showProfile() {
+        return view('profile/account');
+    }
+
+    function uploadAvatar(Request $request) {
+
+        $file = $request->file('avatar');
+        $ext = $file->guessClientExtension();
+        $filename = 'avatar'.Auth::user()->id.".$ext";
+
+        if($file) {
+            Storage::disk('local')->put($filename, File::get($file));
+            $user_profile = Auth::user()->profile;
+            $user_profile->avatar_src = $filename;
+            $user_profile->save();
+        }
+
+        return redirect('profile');
+    }
+
+
+    // function uploadAvatar() {
+    //     request()->file('avatar')->store('avatars');
+
+    //     $file = request()->file('avatar');
+    //     $ext = $file->guessClientExtension();
+    //     $file->storeAs('avatars/' . Auth::user()->id, "avatar.{$ext}");
+
+    //     $user_profile = Auth::user()->profile;
+    //     $user_profile->avatar_src = 'app/avatars/' . Auth::user()->id. "/avatar.{$ext}";
+    //     $user_profile->save();
+
+    //     return back(); 
     // }
 }

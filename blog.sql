@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 19, 2017 at 10:06 AM
+-- Generation Time: Apr 20, 2017 at 10:04 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -72,7 +72,10 @@ INSERT INTO `comments` (`id`, `content`, `user_id`, `article_id`, `created_at`, 
 (3, 'Third Comment', 3, 2, '2017-04-17 20:53:54', '2017-04-17 20:53:54'),
 (4, 'Test comment', 1, 2, '2017-04-17 20:54:32', '2017-04-17 20:54:32'),
 (6, 'Great story!!', 1, 1, '2017-04-18 22:12:22', '2017-04-18 22:12:22'),
-(8, 'This fable is very moving. I really loved how the story ended with a moral story.', 2, 5, '2017-04-18 23:56:35', '2017-04-19 00:04:44');
+(8, 'This fable is very moving. I really loved how the story ended with a moral story.', 2, 5, '2017-04-18 23:56:35', '2017-04-19 00:04:44'),
+(9, 'Haru Liked this Article', 1, 6, '2017-04-19 17:26:35', '2017-04-19 17:26:35'),
+(11, 'Another comment', 3, 1, '2017-04-19 22:39:13', '2017-04-19 22:39:13'),
+(12, 'Comment 1', 3, 7, '2017-04-19 23:38:36', '2017-04-19 23:38:36');
 
 -- --------------------------------------------------------
 
@@ -95,7 +98,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (2, '2014_10_12_100000_create_password_resets_table', 1),
 (3, '2017_04_15_063214_create_articles_table', 1),
 (4, '2017_04_15_072248_create_comments_table', 1),
-(5, '2017_04_18_015506_create_profiles_table', 1);
+(5, '2017_04_18_015506_create_profiles_table', 1),
+(6, '2017_04_20_050454_create_replies_table', 2);
 
 -- --------------------------------------------------------
 
@@ -128,9 +132,36 @@ CREATE TABLE `profiles` (
 --
 
 INSERT INTO `profiles` (`id`, `avatar_src`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, 'avatar1.png', 1, '2017-04-18 02:11:36', '2017-04-18 02:11:36'),
-(2, 'avatar2.png', 2, '2017-04-18 02:19:08', '2017-04-18 02:19:08'),
-(3, 'avatar3.png', 3, '2017-04-18 02:19:56', '2017-04-18 02:19:56');
+(1, 'avatar1.png', 1, '2017-04-18 02:11:36', '2017-04-19 20:02:06'),
+(2, 'avatar2.png', 2, '2017-04-18 02:19:08', '2017-04-19 20:14:46'),
+(3, 'avatar3.png', 3, '2017-04-18 02:19:56', '2017-04-19 20:16:06');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `replies`
+--
+
+CREATE TABLE `replies` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `reply_content` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `comment_id` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `replies`
+--
+
+INSERT INTO `replies` (`id`, `reply_content`, `user_id`, `comment_id`, `created_at`, `updated_at`) VALUES
+(1, 'Testing again testing ult', 3, 1, '2017-04-19 23:14:06', '2017-04-19 23:59:09'),
+(2, 'whyyyyy', 3, 1, '2017-04-19 23:14:24', '2017-04-19 23:59:16'),
+(3, 'Sa kabila testing', 3, 6, '2017-04-19 23:14:40', '2017-04-19 23:14:40'),
+(4, 'Tas eto nalang eto pa eto pa eto pa', 3, 11, '2017-04-19 23:14:48', '2017-04-19 23:37:10'),
+(5, 'next latest', 3, 6, '2017-04-19 23:29:36', '2017-04-19 23:29:36'),
+(7, 'again', 3, 1, '2017-04-19 23:57:38', '2017-04-19 23:59:22');
 
 -- --------------------------------------------------------
 
@@ -153,9 +184,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Felizardo Lim', 'felizardolim@yahoo.com', '$2y$10$mmcgP9lHCGuuDNiCMrD5ZeuOMYrGwOBOW87Z4posCWq6ymQ5RY2M2', 'NhDU7uzSGhebtjmp6ylCOokfToHLAdTljOtnGrJkp4DawtFBYEQyAUSFj7gm', '2017-04-17 18:07:39', '2017-04-17 18:07:39'),
-(2, 'Mike Lim', 'mikelim@yahoo.com', '$2y$10$LxjLV.xtN7HXRZezIr5ugOipyDCeXeIDn7bV8LZUYL3P3lGGZiYhu', 'oVdC9BEDs9zxbRz9DX6O6eYcb91Guqzryl8ZeTXnttR3YTMsRH4IWXixwdtW', '2017-04-17 18:18:39', '2017-04-17 18:18:39'),
-(3, 'Narcy Din', 'narcydin@yahoo.com', '$2y$10$4isTBdtmlPDYDBndiE73l.Se03avWjX8NVJgxuJWfBLUYhMvox5/C', '8RvOJXdg5DZd64qbVkKPATFLluS1hVicJOXs6hphirUyJw3KLcRhiTIi7doN', '2017-04-17 18:19:39', '2017-04-17 18:19:39');
+(1, 'Felizardo Lim', 'felizardolim@yahoo.com', '$2y$10$mmcgP9lHCGuuDNiCMrD5ZeuOMYrGwOBOW87Z4posCWq6ymQ5RY2M2', '8oFJFQlMCzvWHtUlSus2GKFZaVEL8mo5N6ldZj4NPidNQEme3ZlbhR2VRuQV', '2017-04-17 18:07:39', '2017-04-17 18:07:39'),
+(2, 'Mike Lim', 'mikelim@yahoo.com', '$2y$10$LxjLV.xtN7HXRZezIr5ugOipyDCeXeIDn7bV8LZUYL3P3lGGZiYhu', 'LAfZs3cARktNqmWt3KRCOJ7hR8dyLdThPmsfNhdvjHw9sC8LvF4pYn9cypEP', '2017-04-17 18:18:39', '2017-04-17 18:18:39'),
+(3, 'Narcy Din', 'narcydin@yahoo.com', '$2y$10$4isTBdtmlPDYDBndiE73l.Se03avWjX8NVJgxuJWfBLUYhMvox5/C', 'ol02RVh3yR3HKdG99FsCwOb3LFq2KzR9kxkLcXJFgnGof671Ks1miPdWhqFV', '2017-04-17 18:19:39', '2017-04-17 18:19:39');
 
 --
 -- Indexes for dumped tables
@@ -192,6 +223,12 @@ ALTER TABLE `profiles`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `replies`
+--
+ALTER TABLE `replies`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -206,22 +243,27 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `articles`
 --
 ALTER TABLE `articles`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `profiles`
 --
 ALTER TABLE `profiles`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `replies`
+--
+ALTER TABLE `replies`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `users`
 --

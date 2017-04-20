@@ -15,6 +15,10 @@ class User extends Authenticatable
         return $this->hasOne('App\Profile');
     }
 
+    function replies() {
+        return $this->hasMany('App\Reply');
+    }
+
     use Notifiable;
 
     /**
