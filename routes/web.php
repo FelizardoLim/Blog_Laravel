@@ -21,33 +21,27 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
-Route::get('articles', 'ArticlesController@showArticles'); 
-Route::get('articles/create', 'ArticlesController@createArticle');
-Route::get('articles/{id}', 'ArticlesController@showArticle');
-Route::post('articles/create', 'ArticlesController@saveArticle');
-Route::get('articles/{id}/edit', 'ArticlesController@editArticle');
-Route::post('articles/{id}/edit', 'ArticlesController@saveEditedArticle');
-Route::get('articles/{id}/delete', 'ArticlesController@deleteArticle');
-Route::post('articles/{id}/comment', 'ArticlesController@addComment');
-
-Route::get('landing', 'ArticlesController@showLanding');
-
+// FEED routes
 Route::get('feed', 'ArticlesController@showAllFeed');
 Route::get('feed/{id}', 'ArticlesController@showFeed');
-Route::post('feed/{id}/edit_comment', 'ArticlesController@saveEditedComment');
-Route::get('feed/{id}/delete_comment', 'ArticlesController@deleteComment');
-
+Route::post('feed/create', 'ArticlesController@saveNewFeed');
+Route::post('feed/{id}/edit', 'ArticlesController@saveEditedFeed');
+Route::get('feed/{id}/delete', 'ArticlesController@deleteFeed');
+// COMMENT routes
+Route::post('feed/{id}/comment', 'CommentsController@addComment');
+Route::post('feed/{id}/edit_comment', 'CommentsController@saveEditedComment');
+Route::get('feed/{id}/delete_comment', 'CommentsController@deleteComment');
+// UPLOAD routes
 Route::get('profile', 'ArticlesController@showProfile');
 Route::post('upload_avatar', 'ArticlesController@uploadAvatar');
-
+// REPLY routes
 Route::post('feed/{id}/reply', 'RepliesController@addReply');
 Route::post('feed/{id}/edit_reply', 'RepliesController@saveEditedReply');
 Route::get('feed/{id}/delete_reply', 'RepliesController@deleteReply');
+// FOLLOW routes
+Route::get('feed/{id}/follow', 'FollowsController@requestToFollow');
+Route::get('request', 'FollowsController@showPendingRequest');
+Route::get('approve_request/{id}', 'FollowsController@approveRequest');
+Route::get('decline_request/{id}', 'FollowsController@declineRequest');
 
 
-// Route::post('upload_avatar', 'ArticlesController@uploadAvatar');
-
-
-// not being used?
-// Route::get('feed/{id}/edit', 'ArticlesController@editArticle');
-// Route::post('feed/{id}/edit', 'ArticlesController@saveEditedArticle');

@@ -13,7 +13,7 @@
 				</div>
 				<div class='modal-footer'>
 					<button type='button' class='btn btn-sm btn-default' data-dismiss='modal'>Close</button>
-					<a href='{{ url("articles/$article->id/delete") }}'><button type'submit' class='btn btn-sm btn-danger' name='delete'>Yes! Delete this Item</button></a>
+					<a href='{{ url("feed/$article->id/delete") }}'><button type'submit' class='btn btn-sm btn-danger' name='delete'>Yes! Delete this Item</button></a>
 				</div>
 			</div>
 		</div>

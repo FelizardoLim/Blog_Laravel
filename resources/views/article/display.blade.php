@@ -1,9 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-	@if(Session::has('message'))
-		<p class="alert alert-success">{{ Session::get('message') }}</p>
-	@endif
 	<div class="col-sm-7 col-sm-offset-1">
 		<div class="media">
 			<div class="media-left">
@@ -25,6 +22,9 @@
 				</nav>
 			</div>
 		</div>
+		@if(Session::has('message'))
+			<p class="alert alert-success">{{ Session::get('message') }}</p>
+		@endif
 		@foreach($users as $user)
 		@if(count($user->articles))
 			<div class="media">
@@ -50,6 +50,26 @@
 	<!-- main right -->
 	<div class="col-sm-3">
 		<h4>Trending Blogs</h4>
-		<p>Sample text Sample text Sample text Sa</p>
+		@foreach($notFriends as $recommended)
+		<div class="panel panel-default">
+			<div class="media">
+				<div class="media-left">
+					<img class="media-object recommended_avatar" src="{{ asset('img/'.$recommended->profile->avatar_src) }}">
+				</div>
+				<div class="media-body">					
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-xs-8">
+								{{ $recommended->name }}
+							</div>
+							<div class="col-xs-4 text-right">
+								<a href='{{ url("feed/$recommended->id/follow") }}'><span class="glyphicon glyphicon-plus"></span></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		@endforeach
 	</div>
 @endsection

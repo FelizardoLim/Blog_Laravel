@@ -70,6 +70,7 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
+                                <li><a href=" {{ url('request') }}">Pending Requests</a></li>
                                     <li><a href=" {{ url('profile') }}">Profile</a></li>
                                     <li>
                                         <a href="{{ route('logout') }}"

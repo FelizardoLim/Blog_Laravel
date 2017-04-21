@@ -44,6 +44,7 @@
 
 						@foreach($comment->replies as $reply)
 							<p>{{ $reply->reply_content }}</p>
+							<img src='{{ asset("img/".$reply->reply_owner->profile->avatar_src) }}'>
 							@if($reply->user_id == Auth::user()->id)
 								<button class="btn btn-sm btn-default" data-toggle="modal" data-target="#edit_reply{{$reply->id}}">Edit</button>
 								@include('reply/edit')
@@ -68,7 +69,7 @@
 				</div>
 			</div>
 		@endif
-		<form class="form-group" method="POST" action='{{ url("articles/$article->id/comment") }}'>
+		<form class="form-group" method="POST" action='{{ url("feed/$article->id/comment") }}'>
 			{{ csrf_field() }}
 			<div class="form-group">
 				<div class="panel panel-default">

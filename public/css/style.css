@@ -68,6 +68,10 @@ html, body {
 	width: 75px;
 }
 
+.recommended_avatar {
+    width: 50px;
+}
+
 /*.panel_reply {
     display: none;
 }*/

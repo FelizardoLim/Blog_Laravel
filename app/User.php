@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Auth;
 
 class User extends Authenticatable
 {
@@ -17,6 +18,23 @@ class User extends Authenticatable
 
     function replies() {
         return $this->hasMany('App\Reply');
+    }
+
+    function followRequest() {
+        return $this->belongsToMany('App\User', 'follow', 'requester', 'approver');
+    }
+
+    function pendingRequest() {
+        return $this->belongsToMany('App\User', 'follow', 'approver', 'requester');
+    }
+
+    function myFriends() {
+        return $this->followRequest()->wherePivot('status',1)->get()->merge($this->pendingRequest()->wherePivot('status',1)->get());
+    }
+
+    function declineRequest(User $user) {
+        //DB::table('follow')->where('id', $id)->delete();
+        Auth::user()->pendingRequest()->detach($user->id);
     }
 
     use Notifiable;

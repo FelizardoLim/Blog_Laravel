@@ -5,7 +5,7 @@
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         		<h4 class="modal-title">Create Post Details</h4>
 			</div>
-			<form class="form-group" method="POST" action="{{ url('articles/create') }}">
+			<form class="form-group" method="POST" action="{{ url('feed/create') }}">
 			<div class="modal-body">
 					{{ csrf_field() }}
 					<div class="form-group">
