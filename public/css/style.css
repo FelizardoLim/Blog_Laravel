@@ -63,18 +63,17 @@ html, body {
     margin-bottom: 30px;
 }
 
-/*landing page*/
-.user_avatar {
+/*feed page*/
+.user_avatar, .follow_avatar {
 	width: 75px;
 }
 
-.recommended_avatar {
+.recommended_avatar, .reply_avatar {
     width: 50px;
 }
 
-/*.panel_reply {
-    display: none;
-}*/
+/*single feed page*/
+
 
 /*login page*/
 .login, .register {

@@ -8,12 +8,12 @@
 				</div>
 				<div class='modal-body'>
 					<h4>Are you sure?</h4>
-					<p>Proceeding with this action would completely erase all data tied to this post.</p>
+					<p>Proceeding with this action would completely erase all data tied to this reply.</p>
 					<p>Please review the details carefully before completing this action as changes done afterwards would be irreversible.</p>
 				</div>
 				<div class='modal-footer'>
 					<button type='button' class='btn btn-sm btn-default' data-dismiss='modal'>Close</button>
-					<a href='{{ url("feed/{$reply->id}/delete_reply") }}'><button type'submit' class='btn btn-sm btn-danger' name='delete'>Yes! Delete this reply!</button></a>
+					<a href='{{ url("feed/{$reply->id}/delete_reply") }}'><button type'submit' class='btn btn-sm btn-danger' name='delete'>Delete</button></a>
 				</div>
 			</div>
 		</div>

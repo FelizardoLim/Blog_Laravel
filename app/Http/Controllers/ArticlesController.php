@@ -73,7 +73,6 @@ class ArticlesController extends Controller
     }
 
     function uploadAvatar(Request $request) {
-        dd($request);
         $file = $request->file('avatar');
         $ext = $file->guessClientExtension();
         $filename = 'avatar'.Auth::user()->id.".$ext";

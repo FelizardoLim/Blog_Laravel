@@ -49,7 +49,7 @@
 	</div>
 	<!-- main right -->
 	<div class="col-sm-3">
-		<h4>Trending Blogs</h4>
+		<h4>Follow Your Fellow Bloggers</h4>
 		@foreach($notFriends as $recommended)
 		<div class="panel panel-default">
 			<div class="media">

@@ -2,20 +2,35 @@
 
 @section('content')	
 	<div class="col-sm-7 col-sm-offset-1">
-		<div class="panel panel-default">
+	@if(Session::has('message'))
+		<p class="alert alert-success">{{ Session::get('message') }}</p>
+	@endif
+		<div class="panel panel-primary">
 			<div class="panel-heading">
-				<h3> {{ $article->title }} </h3>
+				<div class="row">
+					<div class="col-xs-10">
+						<h3> {{ $article->title }} </h3>
+					</div>
+					@if($article->user_id == Auth::user()->id)
+					<div class="col-xs-2">
+						<nav class="dropdown text-right">
+							<button class="btn btn-default dropdown-toggle" type="button" id="actions_dd" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+							    <span class="glyphicon glyphicon-chevron-down"></span>
+						    </button>
+						  	<ul class="dropdown-menu" aria-labelledby="actions_dd">
+							    <li><a data-toggle="modal" data-target="#edit_article">Edit</a></li>
+							    <li><a data-toggle="modal" data-target="#delete_article">Delete</a></li>    
+						  	</ul>
+					  	</nav>
+					</div>
+					@endif
+
+				</div>
 			</div>
+			@include ('article/edit')
+			@include ('article/delete')
 			<div class="panel-body">
 				<p> {!! html_entity_decode($article->content) !!} </p>
-				@if($article->user_id == Auth::user()->id)
-					<div>
-						<button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#edit_article">Edit</button>
-						@include ('article/edit')
-						<button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete_article">Delete</button>
-						@include ('article/delete')
-					</div>
-				@endif
 			</div>
 		</div>
 		@if(count($article->comments))
@@ -24,9 +39,6 @@
 					<h4>Comments: </h4>
 				</div>
 				<div class="panel-body">
-					@if(Session::has('message'))
-						<p class="alert alert-success">{{ Session::get('message') }}</p>
-					@endif
 					@foreach($article->comments as $comment)
 						<div class="row">
 							<div class="col-xs-6">
@@ -39,12 +51,18 @@
 						<p>Comment:</p>
 						<p>{{ $comment->content }}</p>		
 
-						<button class="btn btn-sm btn-primary pull-right" data-toggle="modal" data-target="#add_reply">Reply</button>
+						<button class="btn btn-sm btn-primary pull-right" data-toggle="modal" data-target="#add_reply{{ $comment->id }}">Reply</button>
 						@include ('reply/create_reply')
 
 						@foreach($comment->replies as $reply)
-							<p>{{ $reply->reply_content }}</p>
-							<img src='{{ asset("img/".$reply->reply_owner->profile->avatar_src) }}'>
+							<div class="media">
+								<div class="media-left">
+									<img class="media-object reply_avatar" src='{{ asset("img/".$reply->reply_owner->profile->avatar_src) }}'>
+								</div>
+								<div class="media-body">
+									<p>{{ $reply->reply_content }}</p>
+								</div>
+							</div>
 							@if($reply->user_id == Auth::user()->id)
 								<button class="btn btn-sm btn-default" data-toggle="modal" data-target="#edit_reply{{$reply->id}}">Edit</button>
 								@include('reply/edit')

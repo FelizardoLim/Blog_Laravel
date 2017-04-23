@@ -25,7 +25,7 @@ class CommentsController extends Controller
 
 		//ask why 'articles/$id' doesnt work. double quotes required. 
         Session::flash('message', 'Comment Successfully Created!');
-		return redirect("articles/$id");
+		return redirect("feed/$id");
 	}
 
     function saveEditedComment($comment_id, Request $request) {
