@@ -64,6 +64,24 @@ html, body {
 }
 
 /*feed page*/
+.secondary_nav {
+    text-align: center;
+}
+
+.secondary_nav > a {
+    color: black;
+    padding: 0;
+}
+
+.secondary_nav > a > i {
+    font-size: 30px;
+    padding: 10px 20px;
+}
+
+.secondary_nav > a > p {
+    margin-bottom: 0;
+}
+
 .user_avatar, .follow_avatar {
 	width: 75px;
 }
@@ -87,9 +105,12 @@ html, body {
 }
 
 .requester_details {
-    padding-top: 20px;
+    padding-top: 30px;
 }
 
+.recommended_details {
+    padding-top: 15px;
+}
 
 /*login page*/
 .login, .register {
@@ -104,31 +125,31 @@ html, body {
         padding-top: 0;
     }
 
-    .content_middle {
-        padding-top: 0;
-    }
+/*    .content_middle {
+        padding-top: 50px;
+    }*/
 }
 
 @media screen and (max-width: 640px) {
-    .content_middle {
-        padding-top: 10px;
-    }
+/*    .content_middle {
+        padding-top: 20px;
+    }*/
 }
 
 @media screen and (max-width: 768px) {
-    .content_middle {
-        padding-top: 20px;
-    }
+/*    .content_middle {
+        padding-top: 75px;
+    }*/
 }
 
 @media screen and (max-width: 992px) {
-    .content_middle {
-        padding-top: 35px;
-    }
+/*    .content_middle {
+        padding-top: 5px;
+    }*/
 }
 
 @media screen and (max-width: 1200px) {
-    .content_middle {
-        padding-top: 50px;
-    }
+/*    .content_middle {
+        padding-top: 40px;
+    }*/
 }

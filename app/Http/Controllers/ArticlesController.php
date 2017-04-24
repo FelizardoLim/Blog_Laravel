@@ -19,7 +19,7 @@ class ArticlesController extends Controller
     function showAllFeed() {
         // if displaying all users and not just existing friends
         $avatar = Auth::user()->profile->avatar_src;
-        
+        $photos = User::all();
         // used to push existing auth user articles into feed page
         // $users[] = Auth::user();
         // display all
@@ -31,7 +31,7 @@ class ArticlesController extends Controller
         $users->push(Auth::user());
         // push personal profile into main page.
 
-        return view('article/display', compact('users','avatar','notFriends', 'friends'));
+        return view('article/display', compact('users','avatar','notFriends', 'friends', 'photos'));
     }
 
     function showFeed($id) {

@@ -44,5 +44,5 @@ Route::get('feed/{id}/follow', 'FollowsController@requestToFollow');
 Route::get('request', 'FollowsController@showPendingRequest');
 Route::get('approve_request/{id}', 'FollowsController@approveRequest');
 Route::get('decline_request/{id}', 'FollowsController@declineRequest');
-
-
+// Post Photo
+Route::post('upload_photo', 'PhotosController@uploadPhoto');

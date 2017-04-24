@@ -5,6 +5,19 @@
     @if(Session::has('message'))
         <p class="alert alert-success">{{ Session::get('message') }}</p>
     @endif
+        <div class="panel panel-primary">
+            <div class="panel-body">
+                <div class="media">
+                    <div class="media-left">
+                        <img class="media-object requester_avatar" src="{{ asset('img/'.Auth::user()->profile->avatar_src) }}">
+                    </div>
+                    <div class="media-body requester_details">
+                        <h4 class="media-heading">{{ Auth::user()->name }}</h4>
+                        <p>Welcome to my Blog. Enjoy reading!</p>
+                    </div>
+                </div>
+            </div>
+        </div>    
     @foreach(Auth::user()->articles as $article)
             <div class="panel panel-primary">
                 <div class="panel-heading">

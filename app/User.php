@@ -12,6 +12,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Article');
     }
 
+    function photos() {
+        return $this->hasMany('App\Photo');
+    }
+
     function profile() {
         return $this->hasOne('App\Profile');
     }

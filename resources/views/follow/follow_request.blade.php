@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-	<div class="col-xs-12 col-sm-8 col-sm-offset-2">
+	<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
 				<h4>Pending Requests: </h4>
@@ -21,6 +21,7 @@
 							<a href='{{ url("decline_request/$request->id") }}'><button class="btn btn-sm btn-danger">Decline</button></a>
 						</div>
 					</div>
+					<br>
 				@endforeach
 			</div>
 		</div>

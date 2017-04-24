@@ -11,11 +11,26 @@
 					<div class="panel panel-default">
 						<div class="panel-body">
 							<ul class="nav navbar-nav">
-								<li><a class="glyphicon glyphicon-book" aria-hidden="true" data-toggle="modal" data-target="#create_article"></a></li>
+								<li class="secondary_nav">
+									<a data-toggle="modal" data-target="#create_article">
+										<i class="glyphicon glyphicon-pencil" aria-hidden="true"></i>
+										<p>Text</p>
+									</a>
+								</li>
 								@include ('article/create')
-								<li><a class="glyphicon glyphicon-picture" aria-hidden="true" href="#"></a></li>
-								<li><a class="glyphicon glyphicon-facetime-video" aria-hidden="true" href="#"></a></li>
-								<li><a class="glyphicon glyphicon-cloud" aria-hidden="true" href="#"></a></li>
+								<li class="secondary_nav">
+									<a data-toggle="modal" data-target="#create_photo">
+										<i class="glyphicon glyphicon-picture" aria-hidden="true"></i>
+										<p>Photo</p>
+									</a>
+								</li>
+								@include ('photo/photo_upload')
+								<li class="secondary_nav">
+									<a>
+										<i class="glyphicon glyphicon-facetime-video" aria-hidden="true"></i>
+										<p>Video</p>
+									</a>
+								</li>
 							</ul>
 						</div>
 					</div>
@@ -26,6 +41,17 @@
 			<p class="alert alert-success">{{ Session::get('message') }}</p>
 		@endif
 		@foreach($users as $user)
+
+
+
+
+@foreach($user->photos as $photo)
+	{{ $photo->photo_src }}
+@endforeach
+
+
+
+
 		@if(count($user->articles))
 			<div class="media">
 				<div class="media-left">
@@ -49,27 +75,31 @@
 	</div>
 	<!-- main right -->
 	<div class="col-sm-3">
-		<h4>Follow Your Fellow Bloggers</h4>
-		@foreach($notFriends as $recommended)
 		<div class="panel panel-default">
-			<div class="media">
-				<div class="media-left">
-					<img class="media-object recommended_avatar" src="{{ asset('img/'.$recommended->profile->avatar_src) }}">
-				</div>
-				<div class="media-body">					
-					<div class="panel-body">
+			<div class="panel-heading">
+				<h5>Recommended Blogs</h5>
+			</div>
+			<div class="panel-body">
+			@foreach($notFriends as $recommended)
+				<div class="media">
+					<div class="media-left">
+						<img class="media-object recommended_avatar" src="{{ asset('img/'.$recommended->profile->avatar_src) }}">
+					</div>
+					<div class="media-body">					
 						<div class="row">
-							<div class="col-xs-8">
+							<div class="col-xs-8 recommended_details">
 								{{ $recommended->name }}
 							</div>
-							<div class="col-xs-4 text-right">
-								<a href='{{ url("feed/$recommended->id/follow") }}'><span class="glyphicon glyphicon-plus"></span></a>
+							<div class="col-xs-4 recommended_details text-right">
+								<a href='{{ url("feed/$recommended->id/follow") }}'>
+									<span class="glyphicon glyphicon-plus"></span>
+								</a>
 							</div>
 						</div>
 					</div>
 				</div>
+			@endforeach
 			</div>
 		</div>
-		@endforeach
 	</div>
 @endsection
