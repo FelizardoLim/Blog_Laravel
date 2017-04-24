@@ -68,14 +68,67 @@ html, body {
 	width: 75px;
 }
 
-.recommended_avatar, .reply_avatar {
+.recommended_avatar, .reply_avatar, .comment_avatar {
     width: 50px;
 }
 
+.requester_avatar {
+    width: 100px;
+}
+
 /*single feed page*/
+.comment_time, .reply_time {
+    font-size: 0.65em;
+    font-style: italic;
+}
+
+.comment_content, .reply_content {
+    text-align: justify;
+}
+
+.requester_details {
+    padding-top: 20px;
+}
 
 
 /*login page*/
 .login, .register {
 	padding-top: 50px;
+}
+
+
+
+@media screen and (max-width: 360px) {
+
+    .requester_details {
+        padding-top: 0;
+    }
+
+    .content_middle {
+        padding-top: 0;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .content_middle {
+        padding-top: 10px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .content_middle {
+        padding-top: 20px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .content_middle {
+        padding-top: 35px;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .content_middle {
+        padding-top: 50px;
+    }
 }

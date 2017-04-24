@@ -18,15 +18,15 @@
 							    <span class="glyphicon glyphicon-chevron-down"></span>
 						    </button>
 						  	<ul class="dropdown-menu" aria-labelledby="actions_dd">
-							    <li><a data-toggle="modal" data-target="#edit_article">Edit</a></li>
-							    <li><a data-toggle="modal" data-target="#delete_article">Delete</a></li>    
+							    <li><a data-toggle="modal" data-target="#edit_article{{ $article->id }}">Edit</a></li>
+							    <li><a data-toggle="modal" data-target="#delete_article{{ $article->id }}">Delete</a></li>    
 						  	</ul>
 					  	</nav>
 					</div>
 					@endif
-
 				</div>
 			</div>
+			<!-- for edit / delete feed modals -->
 			@include ('article/edit')
 			@include ('article/delete')
 			<div class="panel-body">
@@ -34,54 +34,48 @@
 			</div>
 		</div>
 		@if(count($article->comments))
-			<div class="panel panel-default">
+			<div class="panel panel-primary">
 				<div class="panel-heading">
 					<h4>Comments: </h4>
 				</div>
 				<div class="panel-body">
 					@foreach($article->comments as $comment)
-						<div class="row">
-							<div class="col-xs-6">
-								<p>Comment Owner: {{ $comment->owner->name }}</p>
+						<div class="media">
+							<div class="media-left">
+								<img class="media-object comment_avatar" src="{{ asset('img/'.$comment->owner->profile->avatar_src) }}">
 							</div>
-							<div class="col-xs-6 text-right">
-								<p>Posted Date: {{ $comment->created_at }}</p>
+							<div class="media-body">
+								<h4 class="media-heading">{{ $comment->owner->name }} <span class="comment_time">Posted on: {{ $comment->datetime }}</span></h4>
+								<p class="comment_content">{{ $comment->content }}</p>
+								@if($comment->user_id == Auth::user()->id)
+									<a href="#" data-toggle="modal" data-target="#edit_comment{{$comment->id}}">Edit</a> | 
+									@include ('comment/edit')
+									<a href="#" data-toggle="modal" data-target="#delete_comment{{$comment->id}}">Delete</a> |
+									@include ('comment/delete')
+								@endif
+									<a href="#" data-toggle="modal" data-target="#add_reply{{ $comment->id }}">Reply</a>
+									@include ('reply/create_reply')
+								@foreach($comment->replies as $reply)
+								<div class="media">
+									<div class="media-left">
+										<img class="media-object reply_avatar" src='{{ asset("img/".$reply->reply_owner->profile->avatar_src) }}'>
+									</div>
+									<div class="media-body">
+										<h4 class="media-heading">{{ $reply->reply_owner->name }} <span class="reply_time">Posted on: {{ $reply->datetime }}</span></h4>
+										<p class="reply_content">{{ $reply->reply_content }}</p>
+										@if($reply->user_id == Auth::user()->id)
+											<div>
+												<a href="#" data-toggle="modal" data-target="#edit_reply{{$reply->id}}">Edit</a> |
+												@include('reply/edit')
+												<a href="#" data-toggle="modal" data-target="#delete_reply{{$reply->id}}">Delete</a>
+												@include('reply/delete')
+											</div>
+										@endif
+									</div>
+								</div>
+								@endforeach
 							</div>
 						</div>
-						<p>Comment:</p>
-						<p>{{ $comment->content }}</p>		
-
-						<button class="btn btn-sm btn-primary pull-right" data-toggle="modal" data-target="#add_reply{{ $comment->id }}">Reply</button>
-						@include ('reply/create_reply')
-
-						@foreach($comment->replies as $reply)
-							<div class="media">
-								<div class="media-left">
-									<img class="media-object reply_avatar" src='{{ asset("img/".$reply->reply_owner->profile->avatar_src) }}'>
-								</div>
-								<div class="media-body">
-									<p>{{ $reply->reply_content }}</p>
-								</div>
-							</div>
-							@if($reply->user_id == Auth::user()->id)
-								<button class="btn btn-sm btn-default" data-toggle="modal" data-target="#edit_reply{{$reply->id}}">Edit</button>
-								@include('reply/edit')
-								<button class="btn btn-sm btn-default" data-toggle="modal" data-target="#delete_reply{{$reply->id}}">Delete</button>
-								@include('reply/delete')
-							@endif
-						@endforeach
-<!-- 							<script>
-								$("#flip_reply{{$comment->id}}").click(function() {
-									$("#panel_reply{{$comment->id}}").slideToggle("slow");
-								});
-							</script> -->
-
-					@if($comment->user_id == Auth::user()->id)
-						<button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#edit_comment{{$comment->id}}">Edit</button>
-						@include ('comment/edit')
-						<button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete_comment{{$comment->id}}">Delete</button>
-						@include ('comment/delete')
-					@endif
 						<hr>
 					@endforeach
 				</div>
@@ -90,14 +84,14 @@
 		<form class="form-group" method="POST" action='{{ url("feed/$article->id/comment") }}'>
 			{{ csrf_field() }}
 			<div class="form-group">
-				<div class="panel panel-default">
+				<div class="panel panel-primary">
 					<div class="panel-heading">
 						<h4>Leave a comment: </h4>
 					</div>
 					<div class="panel-body">
 						<textarea class="form-control" name="comment" rows="5"></textarea>
 						<br>
-						<button class="pull-right btn btn-sm btn-success" type="submit">Submit</button>
+						<button class="pull-right btn btn-sm btn-success" type="submit">Post</button>
 					</div>
 				</div>
 			</div>

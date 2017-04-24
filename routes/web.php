@@ -19,11 +19,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::get('home', 'HomeController@index');
 
 // FEED routes
 Route::get('feed', 'ArticlesController@showAllFeed');
 Route::get('feed/{id}', 'ArticlesController@showFeed');
+Route::get('request/{id}', 'ArticlesController@showRequestFeed');
 Route::post('feed/create', 'ArticlesController@saveNewFeed');
 Route::post('feed/{id}/edit', 'ArticlesController@saveEditedFeed');
 Route::get('feed/{id}/delete', 'ArticlesController@deleteFeed');

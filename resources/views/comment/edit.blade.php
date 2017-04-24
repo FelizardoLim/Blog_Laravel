@@ -14,7 +14,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
-        		<button type="submit" class="btn btn-sm btn-success">Submit Changes</button>
+        		<button type="submit" class="btn btn-sm btn-success">Update</button>
 			</div>
 			</form>
 		</div>

@@ -1,5 +1,5 @@
 <!-- Delete Modal -->
-	<div id='delete_article' class='modal fade' role='dialog'>
+	<div id='delete_article{{ $article->id }}' class='modal fade' role='dialog'>
 		<div class='modal-dialog'>
 			<div class='modal-content'>
 				<div class='modal-header'>

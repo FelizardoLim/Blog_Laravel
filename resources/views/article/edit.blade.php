@@ -1,4 +1,4 @@
-<div class="modal fade" id="edit_article" tabindex="-1" role="dialog" >
+<div class="modal fade" id="edit_article{{ $article->id }}" tabindex="-1" role="dialog" >
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -14,7 +14,7 @@
 					</div>
 					<div class="form-group">
 						<label for="content">Content:</label>
-						<textarea id="summernote" class="form-control" type="text" name="content" rows="7" placeholder="What's on your Mind?">{{ $article->content }}</textarea>
+						<textarea id="summernote{{ $article->id }}" class="form-control" type="text" name="content" rows="7" placeholder="What's on your Mind?">{{ $article->content }}</textarea>
 					</div>
 			</div>
 			<div class="modal-footer">
@@ -28,6 +28,6 @@
 
 <script>
 $(document).ready(function() {
-    $('#summernote').summernote();
+    $('#summernote{{ $article->id }}').summernote();
 });
 </script>

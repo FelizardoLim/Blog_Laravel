@@ -36,7 +36,24 @@ class ArticlesController extends Controller
 
     function showFeed($id) {
         $article = Article::find($id);
+        // converting time format from database to webinfo
+        foreach ($article->comments as $comment) {
+            $datetime = strtotime($comment->updated_at);
+            $comment->datetime = date("D, jS M Y | h:i:s A", $datetime);
+
+            foreach ($comment->replies as $reply) {
+                $datetime = strtotime($reply->updated_at);
+                $reply->datetime = date("D, jS M Y | h:i:s A", $datetime);
+            }
+        }
         return view('article/display_one_article', compact('article'));
+    }
+
+    function showRequestFeed($id) {
+        // passed ID is user id -- and not article id like above. will use relationship between user and articles to access article info. 
+        $user = User::find($id);
+
+        return view('follow/requester_feed', compact('user'));
     }
 
     function saveNewFeed(Request $request) {
