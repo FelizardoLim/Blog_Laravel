@@ -2,9 +2,9 @@
 
 @section('content')
     <div class="col-sm-8 col-sm-offset-2">
-    @if(Session::has('message'))
-        <p class="alert alert-success">{{ Session::get('message') }}</p>
-    @endif
+        @if(Session::has('message'))
+            <p class="alert alert-success">{{ Session::get('message') }}</p>
+        @endif
         <div class="panel panel-primary">
             <div class="panel-body">
                 <div class="media">
@@ -17,8 +17,9 @@
                     </div>
                 </div>
             </div>
-        </div>    
+        </div>
     @foreach(Auth::user()->articles as $article)
+        @if(null===$article->photo)
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <div class="row">
@@ -47,6 +48,16 @@
                     <p> {!! html_entity_decode($article->content) !!} </p>
                 </div>
             </div>
+        @else
+            <div class="thumbnail">
+                <a href='{{ url("feed/$article->id") }}'>
+                    <img class="img-responsive" src="{{ asset('uploaded_photos/'.$article->photo->photo_src) }}">
+                </a>
+                <div class="caption">
+                    <p>{!! html_entity_decode($article->photo->caption) !!}</p>
+                </div>
+            </div>
+        @endif
     @endforeach
     </div>
 @endsection

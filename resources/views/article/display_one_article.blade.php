@@ -2,37 +2,61 @@
 
 @section('content')	
 	<div class="col-sm-7 col-sm-offset-1">
-	@if(Session::has('message'))
-		<p class="alert alert-success">{{ Session::get('message') }}</p>
-	@endif
-		<div class="panel panel-primary">
-			<div class="panel-heading">
-				<div class="row">
-					<div class="col-xs-10">
-						<h3> {{ $article->title }} </h3>
+		@if(Session::has('message'))
+			<p class="alert alert-success">{{ Session::get('message') }}</p>
+		@endif
+		@if(null===$article->photo)
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<div class="row">
+						<div class="col-xs-10">
+							<h3> {{ $article->title }} </h3>
+						</div>
+						@if($article->user_id == Auth::user()->id)
+						<div class="col-xs-2">
+							<nav class="dropdown text-right">
+								<button class="btn btn-default dropdown-toggle" type="button" id="actions_dd" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+								    <span class="glyphicon glyphicon-chevron-down"></span>
+							    </button>
+							  	<ul class="dropdown-menu" aria-labelledby="actions_dd">
+								    <li><a data-toggle="modal" data-target="#edit_article{{ $article->id }}">Edit</a></li>
+								    <li><a data-toggle="modal" data-target="#delete_article{{ $article->id }}">Delete</a></li>    
+							  	</ul>
+						  	</nav>
+						</div>
+						@endif
 					</div>
-					@if($article->user_id == Auth::user()->id)
-					<div class="col-xs-2">
-						<nav class="dropdown text-right">
+				</div>
+				<!-- for edit / delete feed modals -->
+				@include ('article/edit')
+				@include ('article/delete')
+				<div class="panel-body">
+					<p> {!! html_entity_decode($article->content) !!} </p>
+				</div>
+			</div>
+		@else 
+			<div class="thumbnail">
+				<img class="img-responsive" src="{{ asset('uploaded_photos/'.$article->photo->photo_src) }}">
+				@if($article->user_id == Auth::user()->id)
+					<div class="thumbnail_nav">
+						<nav class="dropdown">
 							<button class="btn btn-default dropdown-toggle" type="button" id="actions_dd" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 							    <span class="glyphicon glyphicon-chevron-down"></span>
 						    </button>
 						  	<ul class="dropdown-menu" aria-labelledby="actions_dd">
-							    <li><a data-toggle="modal" data-target="#edit_article{{ $article->id }}">Edit</a></li>
-							    <li><a data-toggle="modal" data-target="#delete_article{{ $article->id }}">Delete</a></li>    
+							    <li><a data-toggle="modal" data-target="#edit_photo{{ $article->id }}">Edit</a></li>
+							    <li><a data-toggle="modal" data-target="#delete_photo{{ $article->id }}">Delete</a></li>    
 						  	</ul>
 					  	</nav>
 					</div>
-					@endif
+				@endif
+				<div class="caption">
+					<p>{!! html_entity_decode($article->photo->caption) !!}</p>
 				</div>
+				@include ('photo/edit_photo')
+				@include ('photo/delete_photo')
 			</div>
-			<!-- for edit / delete feed modals -->
-			@include ('article/edit')
-			@include ('article/delete')
-			<div class="panel-body">
-				<p> {!! html_entity_decode($article->content) !!} </p>
-			</div>
-		</div>
+		@endif
 		@if(count($article->comments))
 			<div class="panel panel-primary">
 				<div class="panel-heading">

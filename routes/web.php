@@ -46,3 +46,7 @@ Route::get('approve_request/{id}', 'FollowsController@approveRequest');
 Route::get('decline_request/{id}', 'FollowsController@declineRequest');
 // Post Photo
 Route::post('upload_photo', 'PhotosController@uploadPhoto');
+Route::post('feed/{id}/edit_photo', 'PhotosController@saveEditedPhoto');
+Route::get('feed/{id}/delete_photo', 'PhotosController@deletePhoto');
+// Post Video
+Route::post('post_video', 'VideosController@addVideo');

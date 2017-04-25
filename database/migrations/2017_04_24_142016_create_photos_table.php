@@ -18,6 +18,7 @@ class CreatePhotosTable extends Migration
             $table->text('caption');
             $table->string('photo_src');
             $table->integer('user_id')->unsigned();
+            $table->integer('article_id')->unsigned();
             $table->timestamps();
         });
     }

@@ -63,7 +63,6 @@
                         @else
                             <li><a href='{{ url("home") }}'>Home</a></li>
                             <li><a href='{{ url("feed") }}'>Feed</a></li>
-                            <li><a href="#">Post</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>

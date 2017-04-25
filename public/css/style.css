@@ -94,7 +94,18 @@ html, body {
     width: 100px;
 }
 
+.thumbnail {
+    background-color: #FFF;
+}
+
 /*single feed page*/
+
+.thumbnail_nav {
+    position: absolute;
+    top: 11px;
+    right: 31px; 
+}
+
 .comment_time, .reply_time {
     font-size: 0.65em;
     font-style: italic;

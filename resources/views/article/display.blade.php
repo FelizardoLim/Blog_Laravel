@@ -2,6 +2,9 @@
 
 @section('content')
 	<div class="col-sm-7 col-sm-offset-1">
+		@if(Session::has('message'))
+			<p class="alert alert-success">{{ Session::get('message') }}</p>
+		@endif
 		<div class="media">
 			<div class="media-left">
 				<img class="media-object user_avatar" src="{{ asset('img/'.Auth::user()->profile->avatar_src) }}" alt="">
@@ -26,51 +29,53 @@
 								</li>
 								@include ('photo/photo_upload')
 								<li class="secondary_nav">
-									<a>
+									<a data-toggle="modal" data-target="#create_video">
 										<i class="glyphicon glyphicon-facetime-video" aria-hidden="true"></i>
 										<p>Video</p>
 									</a>
 								</li>
+								@include ('video/post_video')
 							</ul>
 						</div>
 					</div>
 				</nav>
 			</div>
 		</div>
-		@if(Session::has('message'))
-			<p class="alert alert-success">{{ Session::get('message') }}</p>
-		@endif
 		@foreach($users as $user)
-
-
-
-
-@foreach($user->photos as $photo)
-	{{ $photo->photo_src }}
-@endforeach
-
-
-
-
-		@if(count($user->articles))
-			<div class="media">
-				<div class="media-left">
-					<img class="media-object user_avatar" src="{{ asset('img/'.$user->profile->avatar_src) }}">
-				</div>
-				<div class="media-body">
-					@foreach($user->articles as $article)
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<p><a href='{{ url("feed/$article->id") }}'>{{ $article->title }}</a></p>
-						</div>
-						<div class="panel-body">
-							{!! html_entity_decode($article->content) !!}
-						</div>
+			@if(count($user->articles))
+				<div class="media">
+					<div class="media-left">
+						<img class="media-object user_avatar" src="{{ asset('img/'.$user->profile->avatar_src) }}">
 					</div>
-					@endforeach
+					<div class="media-body">
+						@foreach($user->articles as $article)
+							@if(null===$article->photo && null===$article->video)
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<p><a href='{{ url("feed/$article->id") }}'>{{ $article->title }}</a></p>
+									</div>
+									<div class="panel-body">
+										{!! html_entity_decode($article->content) !!}
+									</div>
+								</div>
+							@elseif(null!==$article->video)
+								<div class="embed-responsive embed-responsive-16by9">
+									<iframe width="560" height="315" src="{{ $article->video->video_src }}" frameborder="0" allowfullscreen></iframe>
+								</div>
+							@else 
+								<div class="thumbnail">
+									<a href='{{ url("feed/$article->id") }}'>
+										<img class="img-responsive" src="{{ asset('uploaded_photos/'.$article->photo->photo_src) }}">
+									</a>
+									<div class="caption">
+										<p>{!! html_entity_decode($article->photo->caption) !!}</p>
+									</div>
+								</div>
+							@endif
+						@endforeach
+					</div>
 				</div>
-			</div>
-		@endif
+			@endif
 		@endforeach
 	</div>
 	<!-- main right -->
