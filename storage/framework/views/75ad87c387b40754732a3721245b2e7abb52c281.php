@@ -1,8 +1,8 @@
 <?php $__env->startSection('content'); ?>
     <div class="col-sm-8 col-sm-offset-2">
-    <?php if(Session::has('message')): ?>
-        <p class="alert alert-success"><?php echo e(Session::get('message')); ?></p>
-    <?php endif; ?>
+        <?php if(Session::has('message')): ?>
+            <p class="alert alert-success"><?php echo e(Session::get('message')); ?></p>
+        <?php endif; ?>
         <div class="panel panel-primary">
             <div class="panel-body">
                 <div class="media">
@@ -15,13 +15,14 @@
                     </div>
                 </div>
             </div>
-        </div>    
+        </div>
     <?php $__currentLoopData = Auth::user()->articles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $article): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+        <?php if(null===$article->photo && null===$article->video): ?>
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-10">
-                            <h3> <?php echo e($article->title); ?> </h3>
+                            <h3><!-- <a href='<?php echo e(url("feed/$article->id")); ?>'> --><?php echo e($article->title); ?><!-- </a> --></h3>
                         </div>
                         <?php if($article->user_id == Auth::user()->id): ?>
                         <div class="col-xs-2">
@@ -31,7 +32,7 @@
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="actions_dd">
                                     <li><a data-toggle="modal" data-target="#edit_article<?php echo e($article->id); ?>">Edit</a></li>
-                                    <li><a data-toggle="modal" data-target="#delete_article<?php echo e($article->id); ?>">Delete</a></li>    
+                                    <li><a data-toggle="modal" data-target="#delete_article<?php echo e($article->id); ?>">Delete</a></li>
                                 </ul>
                             </nav>
                         </div>
@@ -45,6 +46,25 @@
                     <p> <?php echo html_entity_decode($article->content); ?> </p>
                 </div>
             </div>
+        <?php elseif(null!==$article->video): ?>
+            <div class="thumbnail">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe width="560" height="315" src="<?php echo e($article->video->video_src); ?>" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="caption">
+                    <p><a href='<?php echo e(url("feed/$article->id")); ?>'><?php echo html_entity_decode($article->video->video_caption); ?></a></p>
+                </div>
+            </div>        
+        <?php else: ?>
+            <div class="thumbnail">
+                <a href='<?php echo e(url("feed/$article->id")); ?>'>
+                    <img class="img-responsive" src="<?php echo e(asset('uploaded_photos/'.$article->photo->photo_src)); ?>">
+                </a>
+                <div class="caption">
+                    <p><?php echo html_entity_decode($article->photo->caption); ?></p>
+                </div>
+            </div>
+        <?php endif; ?>
     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     </div>
 <?php $__env->stopSection(); ?>

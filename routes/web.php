@@ -50,3 +50,5 @@ Route::post('feed/{id}/edit_photo', 'PhotosController@saveEditedPhoto');
 Route::get('feed/{id}/delete_photo', 'PhotosController@deletePhoto');
 // Post Video
 Route::post('post_video', 'VideosController@addVideo');
+Route::post('feed/{id}/edit_video', 'VideosController@saveEditedVideo');
+Route::get('feed/{id}/delete_video', 'VideosController@deleteVideo');

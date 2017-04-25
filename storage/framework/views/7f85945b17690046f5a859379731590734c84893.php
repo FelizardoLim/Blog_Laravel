@@ -15,7 +15,7 @@
 					</div>
 					<div class="form-group">
 						<label for="caption">Caption: </label>
-						<textarea id="summernote" class="form-control" type="text" name="caption"></textarea>
+						<textarea id="summernote_caption" class="form-control" type="text" name="caption"></textarea>
 					</div>
 				</div>
 			<div class="modal-footer">
@@ -26,3 +26,11 @@
 		</div>
 	</div>
 </div>
+
+<script>
+$(document).ready(function() {
+    $('#summernote_caption').summernote({
+    	minHeight: 150,
+    });
+});
+</script>

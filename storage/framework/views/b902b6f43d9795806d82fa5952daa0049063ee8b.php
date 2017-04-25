@@ -13,7 +13,7 @@
 				</div>
 				<div class='modal-footer'>
 					<button type='button' class='btn btn-sm btn-default' data-dismiss='modal'>Close</button>
-					<a href='<?php echo e(url("feed/{$reply->id}/delete_reply")); ?>'><button type'submit' class='btn btn-sm btn-danger' name='delete'>Delete</button></a>
+					<a href='<?php echo e(url("feed/$reply->id/delete_reply")); ?>'><button type'submit' class='btn btn-sm btn-danger' name='delete'>Delete</button></a>
 				</div>
 			</div>
 		</div>

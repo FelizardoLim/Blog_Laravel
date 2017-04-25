@@ -35,4 +35,25 @@ class VideosController extends Controller
 
     	return back();
     }
+
+    function saveEditedVideo($id, Request $request) {
+        $edit_article_video = Article::find($id)->video;
+        $edit_article_video->video_src = $request->video_src;
+        $edit_article_video->video_caption = $request->video_caption;
+        $edit_article_video->save();
+
+        Session::flash('message', 'Video Successfully Edited!');
+        return back();
+    }
+
+    function deleteVideo($id) {
+        $delete_video_videoinfo = Article::find($id)->video;
+        $delete_video_videoinfo->delete();
+
+        $delete_video_article = Article::find($id);
+        $delete_video_article->delete();
+
+        Session::flash('message', 'Video Successfully Deleted!');
+        return redirect('feed');
+    }
 }

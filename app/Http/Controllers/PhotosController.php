@@ -74,7 +74,6 @@ class PhotosController extends Controller
         $delete_article->delete();
 
 // check
-
         Storage::disk('local_photo')->delete(Article::find($id)->photo->photo_src);
 // check
 

@@ -15,7 +15,7 @@
 					</div>
 					<div class="form-group">
 						<label for="content">Content:</label>
-						<textarea id="summernote<?php echo e($article->id); ?>" class="form-control" type="text" name="content" rows="7" placeholder="What's on your Mind?"><?php echo e($article->content); ?></textarea>
+						<textarea id="summernote<?php echo e($article->id); ?>" class="form-control" type="text" name="content" rows="7"><?php echo e($article->content); ?></textarea>
 					</div>
 			</div>
 			<div class="modal-footer">

@@ -11,8 +11,8 @@
 			</div>
 			<div class="media-body">
 				<nav>
-					<div class="panel panel-default">
-						<div class="panel-body">
+<!-- 					<div class="panel panel-default">
+						<div class="panel-body"> -->
 							<ul class="nav navbar-nav">
 								<li class="secondary_nav">
 									<a data-toggle="modal" data-target="#create_article">
@@ -36,8 +36,8 @@
 								</li>
 								@include ('video/post_video')
 							</ul>
-						</div>
-					</div>
+		<!-- 				</div>
+					</div> -->
 				</nav>
 			</div>
 		</div>
@@ -52,16 +52,21 @@
 							@if(null===$article->photo && null===$article->video)
 								<div class="panel panel-default">
 									<div class="panel-heading">
-										<p><a href='{{ url("feed/$article->id") }}'>{{ $article->title }}</a></p>
+										<h4><a href='{{ url("feed/$article->id") }}'>{{ $article->title }}</a></h4>
 									</div>
 									<div class="panel-body">
 										{!! html_entity_decode($article->content) !!}
 									</div>
 								</div>
 							@elseif(null!==$article->video)
+							<div class="thumbnail">
 								<div class="embed-responsive embed-responsive-16by9">
 									<iframe width="560" height="315" src="{{ $article->video->video_src }}" frameborder="0" allowfullscreen></iframe>
 								</div>
+								<div class="caption">
+									<a href='{{ url("feed/$article->id") }}'><p>{!! html_entity_decode($article->video->video_caption) !!}</p></a>
+								</div>
+							</div>
 							@else 
 								<div class="thumbnail">
 									<a href='{{ url("feed/$article->id") }}'>

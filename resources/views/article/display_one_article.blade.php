@@ -5,7 +5,7 @@
 		@if(Session::has('message'))
 			<p class="alert alert-success">{{ Session::get('message') }}</p>
 		@endif
-		@if(null===$article->photo)
+		@if(null===$article->photo && null===$article->video)
 			<div class="panel panel-primary">
 				<div class="panel-heading">
 					<div class="row">
@@ -33,6 +33,30 @@
 				<div class="panel-body">
 					<p> {!! html_entity_decode($article->content) !!} </p>
 				</div>
+			</div>
+		@elseif(null!==$article->video)
+			<div class="thumbnail">
+				<div class="embed-responsive embed-responsive-16by9">
+					<iframe width="560" height="315" src="{{ $article->video->video_src }}" frameborder="0" allowfullscreen></iframe>
+				</div>
+				<div class="caption">
+					<p>{!! html_entity_decode($article->video->video_caption) !!}</p>
+					@if($article->user_id == Auth::user()->id)
+						<div class="thumbnail_nav">
+							<nav class="dropdown">
+								<button class="btn btn-default dropdown-toggle" type="button" id="actions_dd" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+								    <span class="glyphicon glyphicon-chevron-down"></span>
+							    </button>
+							  	<ul class="dropdown-menu" aria-labelledby="actions_dd">
+								    <li><a data-toggle="modal" data-target="#edit_video{{ $article->id }}">Edit</a></li>
+								    <li><a data-toggle="modal" data-target="#delete_video{{ $article->id }}">Delete</a></li>  
+							  	</ul>
+						  	</nav>
+						</div>
+					@endif
+				</div>
+				@include ('video/edit_video')
+				@include ('video/delete_video')
 			</div>
 		@else 
 			<div class="thumbnail">

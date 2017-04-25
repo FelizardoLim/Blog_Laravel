@@ -9,7 +9,7 @@
 				<div class="modal-body">
 					{{ csrf_field() }}
 					<div class="form-group">
-						<label for="Video Source">Video Link</label>
+						<label for="Video Source">Video Link: </label>
 						<input class="form-control" name="video_src">
 					</div>
 					<div class="form-group">
