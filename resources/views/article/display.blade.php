@@ -61,7 +61,7 @@
 							@elseif(null!==$article->video)
 							<div class="thumbnail">
 								<div class="embed-responsive embed-responsive-16by9">
-									<iframe width="560" height="315" src="{{ $article->video->video_src }}" frameborder="0" allowfullscreen></iframe>
+									<iframe width="560" height="315" src="http://www.youtube.com/embed/{{ $article->video->video_src }}" frameborder="0" allowfullscreen></iframe>
 								</div>
 								<div class="caption">
 									<a href='{{ url("feed/$article->id") }}'><p>{!! html_entity_decode($article->video->video_caption) !!}</p></a>

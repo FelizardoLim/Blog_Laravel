@@ -26,8 +26,18 @@ class VideosController extends Controller
     	$new_article_video->user_id = Auth::user()->id;
     	$new_article_video->save();
 
+        $video_embed_url = $request->video_src;
+        if (strlen($video_embed_url) > 11) {
+            if (preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $video_embed_url, $match))
+            {
+                $video_embed_url = $match[1];
+            }
+            else
+                $video_embed_url = false;
+        }
+
     	$new_video = new Video();
-    	$new_video->video_src = $request->video_src;
+    	$new_video->video_src = $video_embed_url;
     	$new_video->video_caption = $request->video_caption;
     	$new_video->user_id = Auth::user()->id;
     	$new_video->article_id = $new_article_video->id;
@@ -36,9 +46,19 @@ class VideosController extends Controller
     	return back();
     }
 
-    function saveEditedVideo($id, Request $request) {
+    function saveEditedVideo($id, Request $request) {        
+        $video_embed_url = $request->video_src;
+        if (strlen($video_embed_url) > 11) {
+            if (preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $video_embed_url, $match))
+            {
+                $video_embed_url = $match[1];
+            }
+            else
+                $video_embed_url = false;
+        }
+
         $edit_article_video = Article::find($id)->video;
-        $edit_article_video->video_src = $request->video_src;
+        $edit_article_video->video_src = $video_embed_url;
         $edit_article_video->video_caption = $request->video_caption;
         $edit_article_video->save();
 
