@@ -3,41 +3,37 @@
 @section('content')
 	<div class="col-sm-7 col-sm-offset-1">
 		@if(Session::has('message'))
-			<p class="alert alert-success">{{ Session::get('message') }}</p>
+			<p class="alert alert-success text-center">{{ Session::get('message') }}</p>
 		@endif
 		<div class="media">
 			<div class="media-left">
 				<img class="media-object user_avatar" src="{{ asset('img/'.Auth::user()->profile->avatar_src) }}" alt="">
 			</div>
 			<div class="media-body">
-				<nav>
-<!-- 					<div class="panel panel-default">
-						<div class="panel-body"> -->
-							<ul class="nav navbar-nav">
-								<li class="secondary_nav">
-									<a data-toggle="modal" data-target="#create_article">
-										<i class="glyphicon glyphicon-pencil" aria-hidden="true"></i>
-										<p>Text</p>
-									</a>
-								</li>
-								@include ('article/create')
-								<li class="secondary_nav">
-									<a data-toggle="modal" data-target="#create_photo">
-										<i class="glyphicon glyphicon-picture" aria-hidden="true"></i>
-										<p>Photo</p>
-									</a>
-								</li>
-								@include ('photo/photo_upload')
-								<li class="secondary_nav">
-									<a data-toggle="modal" data-target="#create_video">
-										<i class="glyphicon glyphicon-facetime-video" aria-hidden="true"></i>
-										<p>Video</p>
-									</a>
-								</li>
-								@include ('video/post_video')
-							</ul>
-		<!-- 				</div>
-					</div> -->
+				<nav class="secondary_nav_main">
+					<ul class="nav navbar-nav">
+						<li class="secondary_nav">
+							<a data-toggle="modal" data-target="#create_article">
+								<i class="glyphicon glyphicon-font" aria-hidden="true"></i>
+								<p>Text</p>
+							</a>
+						</li>
+						@include ('article/create')
+						<li class="secondary_nav">
+							<a data-toggle="modal" data-target="#create_photo">
+								<i class="glyphicon glyphicon-camera" aria-hidden="true"></i>
+								<p>Photo</p>
+							</a>
+						</li>
+						@include ('photo/photo_upload')
+						<li class="secondary_nav">
+							<a data-toggle="modal" data-target="#create_video">
+								<i class="glyphicon glyphicon-facetime-video" aria-hidden="true"></i>
+								<p>Video</p>
+							</a>
+						</li>
+						@include ('video/post_video')
+					</ul>
 				</nav>
 			</div>
 		</div>
@@ -88,7 +84,7 @@
 	<div class="col-sm-3">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h5>Recommended Blogs</h5>
+				<h5 class="std_text_color">Recommended Blogs</h5>
 			</div>
 			<div class="panel-body">
 			@foreach($notFriends as $recommended)

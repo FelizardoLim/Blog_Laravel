@@ -1,6 +1,6 @@
 <?php $__env->startSection('content'); ?>
 	<div class="col-sm-8 col-sm-offset-2">
-		<div class="panel panel-primary">
+		<div class="panel panel-default">
 			<div class="panel-body">
 				<div class="media">
 					<div class="media-left">
@@ -13,15 +13,35 @@
 				</div>
 			</div>
 		</div>
-		<?php $__currentLoopData = $user->articles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $article): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h3> <?php echo e($article->title); ?> </h3>
-            </div>
-            <div class="panel-body">
-                <p> <?php echo html_entity_decode($article->content); ?> </p>
-            </div>
-        </div>
+		<?php $__currentLoopData = $user->sort_articles_from_latest(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $article): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+		    <?php if(null===$article->photo && null===$article->video): ?>
+		        <div class="panel panel-default">
+		            <div class="panel-heading">
+		                <h4><a href='<?php echo e(url("feed/$article->id")); ?>'><?php echo e($article->title); ?></a></h4>
+		            </div>
+		            <div class="panel-body">
+		                <p> <?php echo html_entity_decode($article->content); ?> </p>
+		            </div>
+		        </div>
+			<?php elseif(null!==$article->video): ?>
+	            <div class="thumbnail">
+	                <div class="embed-responsive embed-responsive-16by9">
+	                    <iframe width="560" height="315" src="http://www.youtube.com/embed/<?php echo e($article->video->video_src); ?>" frameborder="0" allowfullscreen></iframe>
+	                </div>
+	                <div class="caption">
+	                    <p><a href='<?php echo e(url("feed/$article->id")); ?>'><?php echo html_entity_decode($article->video->video_caption); ?></a></p>
+	                </div>
+	            </div>        
+	        <?php else: ?>
+	            <div class="thumbnail">
+	                <a href='<?php echo e(url("feed/$article->id")); ?>'>
+	                    <img class="img-responsive" src="<?php echo e(asset('uploaded_photos/'.$article->photo->photo_src)); ?>">
+	                </a>
+	                <div class="caption">
+	                    <p><?php echo html_entity_decode($article->photo->caption); ?></p>
+	                </div>
+	            </div>
+	        <?php endif; ?>
 		<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 	</div>
 <?php $__env->stopSection(); ?>

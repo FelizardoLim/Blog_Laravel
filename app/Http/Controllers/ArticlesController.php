@@ -106,6 +106,7 @@ class ArticlesController extends Controller
             $user_profile->save();
         }
 
+        Session::flash('message', 'Your Profile Picture has been successfully uploaded!');        
         return redirect('profile');
     }
 

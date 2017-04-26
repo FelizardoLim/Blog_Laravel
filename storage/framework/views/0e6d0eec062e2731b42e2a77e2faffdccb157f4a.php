@@ -34,7 +34,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
+        <nav class="navbar navbar-default navbar-static-top main_nav">
             <div class="container">
                 <div class="navbar-header">
 
@@ -93,7 +93,7 @@
         </nav>
     </div>
     
-    <div class="container">
+    <div class="container display_design">
         <div class="row">
 
             <?php echo $__env->yieldContent('content'); ?>

@@ -1,14 +1,14 @@
 <?php $__env->startSection('content'); ?>	
-	<div class="col-sm-7 col-sm-offset-1">
+	<div class="col-sm-8 col-sm-offset-2">
 		<?php if(Session::has('message')): ?>
 			<p class="alert alert-success"><?php echo e(Session::get('message')); ?></p>
 		<?php endif; ?>
 		<?php if(null===$article->photo && null===$article->video): ?>
-			<div class="panel panel-primary">
+			<div class="panel panel-default">
 				<div class="panel-heading">
 					<div class="row">
 						<div class="col-xs-10">
-							<h3> <?php echo e($article->title); ?> </h3>
+							<h4 class="std_text_color"> <?php echo e($article->title); ?> </h4>
 						</div>
 						<?php if($article->user_id == Auth::user()->id): ?>
 						<div class="col-xs-2">
@@ -35,7 +35,7 @@
 		<?php elseif(null!==$article->video): ?>
 			<div class="thumbnail">
 				<div class="embed-responsive embed-responsive-16by9">
-					<iframe width="560" height="315" src="<?php echo e($article->video->video_src); ?>" frameborder="0" allowfullscreen></iframe>
+					<iframe width="560" height="315" src="http://www.youtube.com/embed/<?php echo e($article->video->video_src); ?>" frameborder="0" allowfullscreen></iframe>
 				</div>
 				<div class="caption">
 					<p><?php echo html_entity_decode($article->video->video_caption); ?></p>
@@ -80,13 +80,13 @@
 			</div>
 		<?php endif; ?>
 		<?php if(count($article->comments)): ?>
-			<div class="panel panel-primary">
+			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h4>Comments: </h4>
+					<h4 class="std_text_color">Comments: </h4>
 				</div>
 				<div class="panel-body">
 					<?php $__currentLoopData = $article->comments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $comment): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-						<div class="media">
+						<div class="media well">
 							<div class="media-left">
 								<img class="media-object comment_avatar" src="<?php echo e(asset('img/'.$comment->owner->profile->avatar_src)); ?>">
 							</div>
@@ -131,9 +131,9 @@
 			<?php echo e(csrf_field()); ?>
 
 			<div class="form-group">
-				<div class="panel panel-primary">
+				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h4>Leave a comment: </h4>
+						<h4 class="std_text_color">Leave a comment: </h4>
 					</div>
 					<div class="panel-body">
 						<textarea class="form-control" name="comment" rows="5"></textarea>
@@ -143,28 +143,6 @@
 				</div>
 			</div>
 		</form>
-	</div>
-	<div class="col-sm-3">
-		<div class="text-justify">
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-		</div>
 	</div>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

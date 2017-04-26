@@ -3,7 +3,7 @@
 @section('content')
     <div class="col-sm-8 col-sm-offset-2">
         @if(Session::has('message'))
-            <p class="alert alert-success">{{ Session::get('message') }}</p>
+            <p class="alert alert-success text-center">{{ Session::get('message') }}</p>
         @endif
         <div class="panel panel-default">
             <div class="panel-body">
@@ -24,7 +24,7 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-10">
-                            <h4><!-- <a href='{{ url("feed/$article->id") }}'> -->{{ $article->title }}<!-- </a> --></h4>
+                            <h4><a href='{{ url("feed/$article->id") }}'>{{ $article->title }}</a></h4>
                         </div>
                         @if($article->user_id == Auth::user()->id)
                         <div class="col-xs-2">

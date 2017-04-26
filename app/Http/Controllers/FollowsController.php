@@ -22,7 +22,8 @@ class FollowsController extends Controller
     		['requester' => Auth::user()->id, 'approver' => $id, 'status' => 0]
     	);
 
-    	return back();
+      Session::flash('message', 'Your Follow Request has been sent successfully.');
+    	return redirect('feed');
     }
 
     function showPendingRequest() {
@@ -34,6 +35,7 @@ class FollowsController extends Controller
     function approveRequest($id) {
     	Auth::user()->pendingRequest->where('id',$id)->first()->pivot->update(['status' => 1]);
 
+      Session::flash('message', 'Follow request has been approved.');
     	return back();
     }
 
@@ -41,6 +43,7 @@ class FollowsController extends Controller
    		$user = User::find($id);
    		Auth::user()->declineRequest($user);
 
+      Session::flash('message', 'Follow request has been denied.');
    		return back();
     }
 }

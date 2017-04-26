@@ -11,7 +11,7 @@
 
 					<div class="form-group">
 						<label for="Video Source">Video Link</label>
-						<input class="form-control" name="video_src" value="<?php echo e($article->video->video_src); ?>">
+						<input class="form-control" name="video_src" value="https://www.youtube.com/watch?v=<?php echo e($article->video->video_src); ?>">
 					</div>
 					<div class="form-group">
 						<label for="Video Caption">Video Caption: </label>

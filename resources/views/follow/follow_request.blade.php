@@ -2,9 +2,12 @@
 
 @section('content')
 	<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+		@if(Session::has('message'))
+			<p class="alert alert-success text-center">{{ Session::get('message') }}</p>
+		@endif
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h4>Pending Requests: </h4>
+				<h4 class="std_text_color">Pending Requests: </h4>
 			</div>
 			<div class="panel-body">
 				@foreach($pending_request as $request)

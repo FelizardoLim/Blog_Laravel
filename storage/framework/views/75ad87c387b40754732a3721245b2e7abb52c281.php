@@ -3,7 +3,7 @@
         <?php if(Session::has('message')): ?>
             <p class="alert alert-success"><?php echo e(Session::get('message')); ?></p>
         <?php endif; ?>
-        <div class="panel panel-primary">
+        <div class="panel panel-default">
             <div class="panel-body">
                 <div class="media">
                     <div class="media-left">
@@ -16,13 +16,13 @@
                 </div>
             </div>
         </div>
-    <?php $__currentLoopData = Auth::user()->articles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $article): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+    <?php $__currentLoopData = Auth::user()->sort_articles_from_latest(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $article): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
         <?php if(null===$article->photo && null===$article->video): ?>
-            <div class="panel panel-primary">
+            <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-10">
-                            <h3><!-- <a href='<?php echo e(url("feed/$article->id")); ?>'> --><?php echo e($article->title); ?><!-- </a> --></h3>
+                            <h4><a href='<?php echo e(url("feed/$article->id")); ?>'><?php echo e($article->title); ?></a></h4>
                         </div>
                         <?php if($article->user_id == Auth::user()->id): ?>
                         <div class="col-xs-2">
@@ -49,7 +49,7 @@
         <?php elseif(null!==$article->video): ?>
             <div class="thumbnail">
                 <div class="embed-responsive embed-responsive-16by9">
-                    <iframe width="560" height="315" src="<?php echo e($article->video->video_src); ?>" frameborder="0" allowfullscreen></iframe>
+                    <iframe width="560" height="315" src="http://www.youtube.com/embed/<?php echo e($article->video->video_src); ?>" frameborder="0" allowfullscreen></iframe>
                 </div>
                 <div class="caption">
                     <p><a href='<?php echo e(url("feed/$article->id")); ?>'><?php echo html_entity_decode($article->video->video_caption); ?></a></p>

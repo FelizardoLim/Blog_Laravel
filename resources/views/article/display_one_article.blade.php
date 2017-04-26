@@ -3,14 +3,14 @@
 @section('content')	
 	<div class="col-sm-8 col-sm-offset-2">
 		@if(Session::has('message'))
-			<p class="alert alert-success">{{ Session::get('message') }}</p>
+			<p class="alert alert-success text-center">{{ Session::get('message') }}</p>
 		@endif
 		@if(null===$article->photo && null===$article->video)
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<div class="row">
 						<div class="col-xs-10">
-							<h4> {{ $article->title }} </h4>
+							<h4 class="std_text_color"> {{ $article->title }} </h4>
 						</div>
 						@if($article->user_id == Auth::user()->id)
 						<div class="col-xs-2">
@@ -84,11 +84,11 @@
 		@if(count($article->comments))
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h4>Comments: </h4>
+					<h4 class="std_text_color">Comments: </h4>
 				</div>
 				<div class="panel-body">
 					@foreach($article->comments as $comment)
-						<div class="media">
+						<div class="media well">
 							<div class="media-left">
 								<img class="media-object comment_avatar" src="{{ asset('img/'.$comment->owner->profile->avatar_src) }}">
 							</div>
@@ -134,7 +134,7 @@
 			<div class="form-group">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h4>Leave a comment: </h4>
+						<h4 class="std_text_color">Leave a comment: </h4>
 					</div>
 					<div class="panel-body">
 						<textarea class="form-control" name="comment" rows="5"></textarea>

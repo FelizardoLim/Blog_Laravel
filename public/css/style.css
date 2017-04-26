@@ -2,7 +2,7 @@
 /* default laravel landing style*/
 html, body {
     background-color: rgb(54, 70, 93);
-    color: #636b6f;
+    color: #696969;
     font-family: 'Raleway', sans-serif;
     font-weight: 100;
     height: 100vh;
@@ -50,7 +50,7 @@ html, body {
 }
 
 .links > a {
-    color: #636b6f;
+    color: white;
     padding: 0 25px;
     font-size: 12px;
     font-weight: 600;
@@ -64,6 +64,10 @@ html, body {
 }
 
 /*feed page*/
+.std_text_color {
+    color: #696969;
+}
+
 .main_nav {
     background-color: rgb(54, 70, 93);
 }
@@ -76,18 +80,36 @@ html, body {
     color: rgb(200,200,200);
 }
 
+.secondary_nav_main .nav {
+    background-color: white;
+    width: 100%;
+    border-radius: 4px;
+}
+
 .secondary_nav {
     text-align: center;
 }
 
+.glyphicon-font {
+    color: #444;
+}
+
+.glyphicon-camera {
+    color: #d95e40;
+}
+
+.glyphicon-facetime-video {
+    color: #56bc8a;
+}
+
 .secondary_nav > a {
-    color: white;
+    color: #696969;
     padding: 0;
 }
 
-.secondary_nav > a:hover {
+/*.secondary_nav > a:hover {
     background-color: rgb(50, 50, 50);
-}
+}*/
 
 .secondary_nav > a > i {
     font-size: 30px;
