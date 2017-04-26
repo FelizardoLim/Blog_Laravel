@@ -1,7 +1,7 @@
 
 /* default laravel landing style*/
 html, body {
-    background-color: #fff;
+    background-color: rgb(54, 70, 93);
     color: #636b6f;
     font-family: 'Raleway', sans-serif;
     font-weight: 100;
@@ -64,13 +64,29 @@ html, body {
 }
 
 /*feed page*/
+.main_nav {
+    background-color: rgb(54, 70, 93);
+}
+
+.navbar-default .navbar-brand, .navbar-default .navbar-nav>li>a {
+    color: rgb(255,255,255);
+}
+
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-nav>li>a:hover {
+    color: rgb(200,200,200);
+}
+
 .secondary_nav {
     text-align: center;
 }
 
 .secondary_nav > a {
-    color: black;
+    color: white;
     padding: 0;
+}
+
+.secondary_nav > a:hover {
+    background-color: rgb(50, 50, 50);
 }
 
 .secondary_nav > a > i {
@@ -84,14 +100,18 @@ html, body {
 
 .user_avatar, .follow_avatar {
 	width: 75px;
+    border-radius: 4px;
 }
+
 
 .recommended_avatar, .reply_avatar, .comment_avatar {
     width: 50px;
+    border-radius: 4px;
 }
 
 .requester_avatar {
     width: 100px;
+    border-radius: 4px;
 }
 
 .thumbnail {
@@ -123,6 +143,12 @@ html, body {
     padding-top: 15px;
 }
 
+/*upload page*/
+.upload_div {
+    margin: 50px 0;
+}
+
+
 /*login page*/
 .login, .register {
 	padding-top: 50px;
@@ -139,6 +165,14 @@ html, body {
 /*    .content_middle {
         padding-top: 50px;
     }*/
+
+    .navbar-default .navbar-nav .open .dropdown-menu>li>a {
+        color: white;
+    }
+
+    .navbar-default .navbar-nav .open .dropdown-menu>li>a:hover {
+        color: rgb(200,200,200) ;
+    }
 }
 
 @media screen and (max-width: 640px) {

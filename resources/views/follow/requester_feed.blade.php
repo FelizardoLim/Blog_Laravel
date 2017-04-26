@@ -15,15 +15,35 @@
 				</div>
 			</div>
 		</div>
-		@foreach($user->articles as $article)
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h3> {{ $article->title }} </h3>
-            </div>
-            <div class="panel-body">
-                <p> {!! html_entity_decode($article->content) !!} </p>
-            </div>
-        </div>
+		@foreach($user->sort_articles_from_latest() as $article)
+		    @if(null===$article->photo && null===$article->video)
+		        <div class="panel panel-default">
+		            <div class="panel-heading">
+		                <h4> {{ $article->title }} </h4>
+		            </div>
+		            <div class="panel-body">
+		                <p> {!! html_entity_decode($article->content) !!} </p>
+		            </div>
+		        </div>
+			@elseif(null!==$article->video)
+	            <div class="thumbnail">
+	                <div class="embed-responsive embed-responsive-16by9">
+	                    <iframe width="560" height="315" src="http://www.youtube.com/embed/{{ $article->video->video_src }}" frameborder="0" allowfullscreen></iframe>
+	                </div>
+	                <div class="caption">
+	                    <p><a href='{{ url("feed/$article->id") }}'>{!! html_entity_decode($article->video->video_caption) !!}</a></p>
+	                </div>
+	            </div>        
+	        @else
+	            <div class="thumbnail">
+	                <a href='{{ url("feed/$article->id") }}'>
+	                    <img class="img-responsive" src="{{ asset('uploaded_photos/'.$article->photo->photo_src) }}">
+	                </a>
+	                <div class="caption">
+	                    <p>{!! html_entity_decode($article->photo->caption) !!}</p>
+	                </div>
+	            </div>
+	        @endif
 		@endforeach
 	</div>
 @endsection

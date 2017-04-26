@@ -13,7 +13,7 @@ class User extends Authenticatable
     }
 
     function sort_articles_from_latest(){
-        return $this->articles->sortByDesc('created_at');
+        return $this->articles->sortByDesc('updated_at');
     }
 
     function photos() {

@@ -2,7 +2,7 @@
 
 @section('content')
 	<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-		<div class="panel panel-primary">
+		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h4>Pending Requests: </h4>
 			</div>
@@ -17,8 +17,8 @@
 							<p>Wants to follow your Blog. </p>
 						</div>
 						<div class="col-xs-4 col-sm-3 col-sm-offset-1 content_middle">
-							<a href='{{ url("approve_request/$request->id") }}'><button class="btn btn-sm btn-success">Accept&nbsp;</button></a>
 							<a href='{{ url("decline_request/$request->id") }}'><button class="btn btn-sm btn-danger">Decline</button></a>
+							<a href='{{ url("approve_request/$request->id") }}'><button class="btn btn-sm btn-success">Accept&nbsp;</button></a>
 						</div>
 					</div>
 					<br>

@@ -5,7 +5,7 @@
         @if(Session::has('message'))
             <p class="alert alert-success">{{ Session::get('message') }}</p>
         @endif
-        <div class="panel panel-primary">
+        <div class="panel panel-default">
             <div class="panel-body">
                 <div class="media">
                     <div class="media-left">
@@ -20,11 +20,11 @@
         </div>
     @foreach(Auth::user()->sort_articles_from_latest() as $article)
         @if(null===$article->photo && null===$article->video)
-            <div class="panel panel-primary">
+            <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-10">
-                            <h3><!-- <a href='{{ url("feed/$article->id") }}'> -->{{ $article->title }}<!-- </a> --></h3>
+                            <h4><!-- <a href='{{ url("feed/$article->id") }}'> -->{{ $article->title }}<!-- </a> --></h4>
                         </div>
                         @if($article->user_id == Auth::user()->id)
                         <div class="col-xs-2">

@@ -41,6 +41,7 @@
 				</nav>
 			</div>
 		</div>
+
 		@foreach($users as $user)
 			@if(count($user->articles))
 				<div class="media">

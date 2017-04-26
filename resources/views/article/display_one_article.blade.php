@@ -6,11 +6,11 @@
 			<p class="alert alert-success">{{ Session::get('message') }}</p>
 		@endif
 		@if(null===$article->photo && null===$article->video)
-			<div class="panel panel-primary">
+			<div class="panel panel-default">
 				<div class="panel-heading">
 					<div class="row">
 						<div class="col-xs-10">
-							<h3> {{ $article->title }} </h3>
+							<h4> {{ $article->title }} </h4>
 						</div>
 						@if($article->user_id == Auth::user()->id)
 						<div class="col-xs-2">
@@ -82,7 +82,7 @@
 			</div>
 		@endif
 		@if(count($article->comments))
-			<div class="panel panel-primary">
+			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h4>Comments: </h4>
 				</div>
@@ -132,7 +132,7 @@
 		<form class="form-group" method="POST" action='{{ url("feed/$article->id/comment") }}'>
 			{{ csrf_field() }}
 			<div class="form-group">
-				<div class="panel panel-primary">
+				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4>Leave a comment: </h4>
 					</div>
