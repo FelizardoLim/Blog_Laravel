@@ -48,7 +48,7 @@
 						<img class="media-object user_avatar" src="{{ asset('img/'.$user->profile->avatar_src) }}">
 					</div>
 					<div class="media-body">
-						@foreach($user->articles as $article)
+						@foreach($user->sort_articles_from_latest() as $article)
 							@if(null===$article->photo && null===$article->video)
 								<div class="panel panel-default">
 									<div class="panel-heading">

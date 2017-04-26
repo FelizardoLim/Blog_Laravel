@@ -31,6 +31,11 @@ class ArticlesController extends Controller
         $users->push(Auth::user());
         // push personal profile into main page.
 
+        // sort descending within a function
+        // foreach($users as $user){
+        //     $user->sorted_articles = $user->articles->sortByDesc('updated_at');
+        // }
+
         return view('article/display', compact('users','avatar','notFriends', 'friends', 'photos'));
     }
 

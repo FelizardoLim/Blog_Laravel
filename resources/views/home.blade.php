@@ -18,7 +18,7 @@
                 </div>
             </div>
         </div>
-    @foreach(Auth::user()->articles as $article)
+    @foreach(Auth::user()->sort_articles_from_latest() as $article)
         @if(null===$article->photo && null===$article->video)
             <div class="panel panel-primary">
                 <div class="panel-heading">

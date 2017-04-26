@@ -12,6 +12,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Article');
     }
 
+    function sort_articles_from_latest(){
+        return $this->articles->sortByDesc('created_at');
+    }
+
     function photos() {
         return $this->hasMany('App\Photo');
     }
