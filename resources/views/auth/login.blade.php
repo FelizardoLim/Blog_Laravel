@@ -1,16 +1,17 @@
 @extends('welcome')
 
 @section('content')
-<div class="container login">
+<div class="container">
     <div class="row">
-        <div class="col-md-6 col-md-offset-3">
+        <div class="col-md-6 col-md-offset-3 login_panel">
+            <h1 class="white_text_color text-center">Ready. Set. Blog.</h1>
             <div class="panel panel-default">
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
 
                         <div>
-                            <h2 class="text-center">Tumbling</h2>
+                            <h2 class="text-center white_text_color">Tumbling</h2>
                         </div>
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
@@ -40,7 +41,7 @@
                         <div class="form-group">
                             <div class="col-sm-8 col-sm-offset-2">
                                 <div class="checkbox">
-                                    <label>
+                                    <label class="white_text_color">
                                         <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
                                     </label>
                                 </div>

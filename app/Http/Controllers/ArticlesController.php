@@ -96,17 +96,23 @@ class ArticlesController extends Controller
 
     function uploadAvatar(Request $request) {
         $file = $request->file('avatar');
-        $ext = $file->guessClientExtension();
-        $filename = 'avatar'.Auth::user()->id.".$ext";
 
         if($file) {
+            $ext = $file->guessClientExtension();
+            $filename = 'avatar'.Auth::user()->id.".$ext";
+
             Storage::disk('local')->put($filename, File::get($file));
             $user_profile = Auth::user()->profile;
             $user_profile->avatar_src = $filename;
+            $user_profile->blog_description = $request->blog_description;
+            $user_profile->save();
+        } else {
+            $user_profile = Auth::user()->profile;
+            $user_profile->blog_description = $request->blog_description;
             $user_profile->save();
         }
 
-        Session::flash('message', 'Your Profile Picture has been successfully uploaded!');        
+        Session::flash('message', 'Your Profile has been successfully uploaded!');        
         return redirect('profile');
     }
 

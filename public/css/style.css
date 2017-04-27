@@ -41,6 +41,13 @@ html, body {
 	bottom: 18px;
 }
 
+.footer-bottom {
+/*    position: absolute;
+    right: 200px;
+    bottom: 18px;*/
+    padding: 0 0 18px;
+}
+
 .content {
     text-align: center;
 }
@@ -84,6 +91,11 @@ html, body {
     background-color: white;
     width: 100%;
     border-radius: 4px;
+    padding: 0
+}
+
+.secondary_nav_main ul {
+    margin: 0;
 }
 
 .secondary_nav {
@@ -176,6 +188,16 @@ html, body {
 	padding-top: 50px;
 }
 
+.login_panel .panel, .register_panel .panel {
+    background-color: transparent;
+    border: 0;
+}
+
+.white_text_color {
+    color: white;
+}
+
+
 
 
 @media screen and (max-width: 360px) {
@@ -195,16 +217,29 @@ html, body {
     .navbar-default .navbar-nav .open .dropdown-menu>li>a:hover {
         color: rgb(200,200,200) ;
     }
+
 }
 
-@media screen and (max-width: 640px) {
-/*    .content_middle {
+@media screen and (min-width: 420px) {
+    .content_middle {
         padding-top: 20px;
-    }*/
+    }
+}
+
+@media screen and (min-width: 500px) {
+    .content_middle {
+        padding-top: 40px;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .content_middle {
+        padding-top: 50px;
+    }
 }
 
 @media screen and (max-width: 768px) {
-/*    .content_middle {
+    /*.content_middle {
         padding-top: 75px;
     }*/
 }
@@ -213,10 +248,13 @@ html, body {
 /*    .content_middle {
         padding-top: 5px;
     }*/
+    .footer-bottom {
+        text-align: center;
+    }
 }
 
 @media screen and (max-width: 1200px) {
-/*    .content_middle {
+  /*  .content_middle {
         padding-top: 40px;
     }*/
 }

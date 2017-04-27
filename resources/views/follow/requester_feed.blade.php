@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-	<div class="col-sm-8 col-sm-offset-2">
+	<div class="col-xs-12 col-md-8 col-md-offset-2">
 		<div class="panel panel-default">
 			<div class="panel-body">
 				<div class="media">
@@ -10,7 +10,7 @@
 					</div>
 					<div class="media-body requester_details">
 						<h4 class="media-heading">{{ $user->name }}</h4>
-						<p>Wants to follow your Blog.</p>
+						<p>{{ $user->profile->blog_description }}</p>
 					</div>
 				</div>
 			</div>

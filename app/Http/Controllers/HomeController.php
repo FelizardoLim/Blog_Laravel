@@ -28,6 +28,7 @@ class HomeController extends Controller
         $profile = new Profile();
         $profile->user_id = Auth::user()->id;
         $profile->avatar_src = 'default.png';
+        $profile->blog_description = 'Please update your blog description in your Profile';
         $profile->save(); 
         
         return view('home');

@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="row">
-		<div class="col-sm-4 col-sm-offset-7">
-			<span>Copyright C 2017</span>
+		<div class="footer-bottom links col-md-4 col-md-offset-8">
+			<a>All Rights Reserved © 2017</a>
 		</div>
 	</div>
 </div>

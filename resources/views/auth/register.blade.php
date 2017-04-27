@@ -3,14 +3,14 @@
 @section('content')
 <div class="container register">
     <div class="row">
-        <div class="col-md-6 col-md-offset-3">
+        <div class="col-md-6 col-md-offset-3 register_panel">
             <div class="panel panel-default">
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
 
                         <div>
-                            <h2 class="text-center">Sign Up</h2>
+                            <h2 class="text-center white_text_color">Sign Up</h2>
                         </div>
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">

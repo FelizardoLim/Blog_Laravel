@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="col-sm-8 col-sm-offset-2">
+    <div class="col-xs-12 col-md-8 col-md-offset-2">
         @if(Session::has('message'))
             <p class="alert alert-success text-center">{{ Session::get('message') }}</p>
         @endif
@@ -13,7 +13,7 @@
                     </div>
                     <div class="media-body requester_details">
                         <h4 class="media-heading">{{ Auth::user()->name }}</h4>
-                        <p>Welcome to my Blog. Enjoy reading!</p>
+                        <p>{{ Auth::user()->profile->blog_description }}</p>
                     </div>
                 </div>
             </div>

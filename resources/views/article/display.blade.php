@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-	<div class="col-sm-7 col-sm-offset-1">
+	<div class="col-xs-12 col-md-7 col-md-offset-1">
 		@if(Session::has('message'))
 			<p class="alert alert-success text-center">{{ Session::get('message') }}</p>
 		@endif
@@ -81,7 +81,7 @@
 		@endforeach
 	</div>
 	<!-- main right -->
-	<div class="col-sm-3">
+	<div class="col-xs-12 col-md-3">
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h5 class="std_text_color">Recommended Blogs</h5>
